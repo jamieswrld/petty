@@ -1,6 +1,8 @@
 import React, { memo } from 'react'
 import Image from 'next/image'
 
+import { playSound } from '@component/app/utils/sounds'
+
 import styles from './/interactions.module.scss'
 
 interface InteractionCardProps {
@@ -24,7 +26,10 @@ function InteractionCard( {
   return (
     <button
       className={styles['interaction']}
-      onClick={() => onClick(value, price)}
+      onClick={() => {
+        playSound('click')
+        onClick(value, price)
+      }}
       disabled={disabled}
     >
       <div className={styles['interaction--meta']}>

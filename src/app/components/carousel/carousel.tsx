@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import Dots from '@component/app/components/carousel/dots/dots'
 import PrevButton from '@component/app/components/carousel/prev-button'
 import NextButton from '@component/app/components/carousel/next-button'
@@ -22,6 +22,8 @@ function Carousel<T>( {
 }: Props<T> ) {
   const [start, setStart] = useState(() => slides.indexOf(value))
   const [selectedItem, setSelectedItem] = useState(value)
+  const onChangeRef = useRef(onChange)
+  onChangeRef.current = onChange
 
   useEffect(() => {
     const center = Math.floor(visibleItemsNumber / 2)
@@ -29,9 +31,10 @@ function Carousel<T>( {
       start + center < slides.length
         ? start + center
         : ( start + center ) - slides.length
-    setSelectedItem(slides[newIndex])
-    onChange(slides[newIndex])
-  }, [start, slides, onChange, visibleItemsNumber])
+    const next = slides[newIndex]
+    setSelectedItem(next)
+    onChangeRef.current(next)
+  }, [start, slides, visibleItemsNumber])
 
   const isControlsVisible = slides.length > visibleItemsNumber
 

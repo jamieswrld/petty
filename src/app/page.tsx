@@ -1,127 +1,145 @@
 'use client'
 
-import React, { useEffect, useMemo, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
-import Image from 'next/image'
+import { useWallet } from '@solana/wallet-adapter-react'
+import { useWalletModal } from '@solana/wallet-adapter-react-ui'
 
-import Carousel from '@component/app/components/carousel/carousel'
-import { Slide, slides } from '@component/app/shared-data/slides'
-import { Pet } from '@component/app/types/pet'
-import { petStore } from '@component/app/pet-store'
+import { playerStore } from './player-store'
+import usePlayer from './hooks/usePlayer'
+import usePet from './hooks/usePet'
+import useProfileEligibility from './hooks/useProfileEligibility'
+import AnimatedHeartBeating from './components/animations/animated-heart-beating'
+import { playSound } from './utils/sounds'
 
-import AnimatedHeartBeating from '@component/app/components/animations/animated-heart-beating'
-import AnimatedSwap from '@component/app/components/animations/animated-swap'
+import { logoPath } from './shared-data/shared-data'
 
-import styles from './styles/home.module.scss'
+import styles from './styles/login.module.scss'
 
-const createPet = ( selectedSlide: Slide, petName: string ) => {
-  const pet: Pet = {
-    image: selectedSlide.image,
-    alt: selectedSlide.alt,
-    name: petName,
-    diet: selectedSlide.diet,
-    fullness: 100,
-    thirst: 100,
-    happiness: 100,
-    urine: 0,
-    balance: 100,
-  }
-  petStore.createPet(pet)
-}
-
-export default function CreatePet() {
+export default function Login() {
   const router = useRouter()
-  const [showHeart, setShowHeart] = useState(true)
-  const showHeartRef = useRef(showHeart)
-  const [selectedSlide, setSelectedSlide] = useState(slides[0])
-  const [petName, setPetName] = useState('')
+  const { player, loaded } = usePlayer()
+  const pet = usePet()
+  const { publicKey, connecting, connected, disconnect } = useWallet()
+  const { setVisible } = useWalletModal()
 
-  const poopImages = useMemo(() => ['/game-asset/poo_1.svg', '/game-asset/poo_2.svg'], [])
+  // Set once the user clicks "Connect wallet", so we only route forward when
+  // THIS interaction connects a wallet (not a silent autoConnect on load).
+  const [walletFlow, setWalletFlow] = useState(false)
 
-  const handleChange = ( e: React.ChangeEvent<HTMLInputElement> ) => {
-    const { value } = e.target
-    const alphanumericOnly = value.replace(/[^a-zA-Z0-9 ]/g, '')
-    setPetName(alphanumericOnly)
+  const eligibility = useProfileEligibility(
+    player?.username || undefined,
+    publicKey?.toBase58() ?? player?.walletAddress,
+    loaded && !player?.username,
+  )
+  const profileBlocked = loaded && !player?.username && !eligibility.loading && !eligibility.allowed
+
+  // Already onboarded -> game if they have a pet, otherwise finish setup.
+  useEffect(() => {
+    if (!loaded || !player?.username) return
+    router.push(pet ? '/game' : '/create')
+  }, [loaded, player, pet, router])
+
+  // A wallet finished connecting as part of the connect flow.
+  useEffect(() => {
+    if (walletFlow && publicKey && !profileBlocked) {
+      playerStore.signInWallet(publicKey.toBase58())
+      router.push('/create')
+    }
+  }, [walletFlow, publicKey, router, profileBlocked])
+
+  const playAsGuest = () => {
+    if (profileBlocked) return
+    playSound('click')
+    playerStore.signInGuest()
+    router.push('/create')
   }
 
-  useEffect(() => {
-    showHeartRef.current = showHeart
-  }, [showHeart])
+  const connectWallet = () => {
+    if (profileBlocked) return
+    playSound('click')
+    setWalletFlow(true)
+    if (publicKey) {
+      playerStore.signInWallet(publicKey.toBase58())
+      router.push('/create')
+    } else {
+      setVisible(true)
+    }
+  }
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY || document.documentElement.scrollTop
-      if (scrollPosition < 100 !== showHeartRef.current) {
-        setShowHeart(scrollPosition < 100)
-      }
+  const disconnectWallet = async () => {
+    setWalletFlow(false)
+    try {
+      if (connected) await disconnect()
+    } catch (error) {
+      //ignored
     }
-    window.addEventListener('scroll', handleScroll)
-    return () => {
-      window.removeEventListener('scroll', handleScroll)
-    }
-  }, [])
+  }
+
+  const shortAddress = publicKey
+    ? `${publicKey.toBase58().slice(0, 4)}…${publicKey.toBase58().slice(-4)}`
+    : null
 
   return (
-    <form className={showHeart ? styles['pet--form'] : `${styles['pet--form']} ${styles['hide--heart']}`}
-          onSubmit={( e ) => {
-            e.preventDefault()
+    <div className={styles['login--container']}>
+      <AnimatedHeartBeating image={logoPath} alt='Petana logo' width={90} height={90}/>
 
-            if (petName.trim()) {
-              createPet(selectedSlide, petName)
-            } else {
-              createPet(selectedSlide, selectedSlide.alt)
-            }
-            router.push('/game')
-          }}
-    >
-      {showHeart && <AnimatedHeartBeating image={'/game-asset/heart.svg'} alt='Heart beating' style='heart'/>}
-      <div className={styles['naming--container']}>
-        <h2>Pet name</h2>
-        <input
-          type='text'
-          placeholder='Enter your pet name'
-          value={petName}
-          onChange={handleChange}
-          maxLength={24}
-        />
+      <div className={styles['login--intro']}>
+        <h1 className={styles.title}>Welcome to Petana</h1>
+        <p className={styles.subtitle}>
+          Adopt a pixel pet, grind daily streaks, and earn coins as you care for your companion.
+        </p>
       </div>
 
-      <div className={styles['pet-options--container']}>
-        <h3>Choose your pet!</h3>
-        <Carousel
-          value={selectedSlide}
-          onChange={( value ) => {
-            setSelectedSlide(value)
-          }}
-          slides={slides}
+      {profileBlocked && (
+        <div className={styles['profile-blocked']}>
+          <p className={styles['profile-blocked--title']}>One profile per connection</p>
+          <p className={styles['profile-blocked--text']}>
+            {eligibility.reason ?? 'Only one Petana profile is allowed from your network.'}
+            {eligibility.existingUsername && (
+              <> Your profile is <strong>{eligibility.existingUsername}</strong>.</>
+            )}
+          </p>
+        </div>
+      )}
+
+      <div className={styles.actions}>
+        <button
+          type='button'
+          className={`${styles.btn} ${styles['btn--primary']}`}
+          onClick={connectWallet}
+          disabled={connecting || profileBlocked}
         >
-          {( slide, isSelected ) => (
-            <div
-              key={slide.id}
-              className={styles['slide--container']}
-            >
-              <Image
-                className={`${styles['slide--image']} ${
-                  isSelected ? styles.element__selected : ''
-                }`}
-                src={slide.image}
-                alt={slide.alt}
-                width={238}
-                height={160}
-                priority
-              />
-              <h3>{slide.alt}</h3>
-            </div>
-          )}
-        </Carousel>
-        <button className={styles['play--btn']} type='submit'>
-          <Image className={styles['play--image']} src={'/buttons/play-btn.svg'} alt='Play' width={160} height={66}/>
+          {connecting
+            ? 'Connecting…'
+            : connected
+              ? `Continue with ${shortAddress}`
+              : 'Connect Solana wallet'}
         </button>
+
+        <button
+          type='button'
+          className={`${styles.btn} ${styles['btn--secondary']}`}
+          onClick={playAsGuest}
+          disabled={profileBlocked}
+        >
+          Play as guest
+        </button>
+
+        {connected && (
+          <button
+            type='button'
+            className={styles['link--btn']}
+            onClick={disconnectWallet}
+          >
+            Disconnect wallet
+          </button>
+        )}
       </div>
-      <AnimatedSwap images={poopImages} alt='Poo' style='poo'/>
-    </form>
+
+      <p className={styles.hint}>
+        Connecting a wallet lets you claim rewards once you hit milestones in-game.
+      </p>
+    </div>
   )
 }
-
-//when I wrote this code, only God & I understood what it did.
-//Now... only God knows.

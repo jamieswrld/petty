@@ -105,12 +105,47 @@ header {
   }
 }
 
+.profile {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+}
+
+.profile--name {
+  font-weight: 600;
+}
+
+.profile--wallet {
+  font-size: 13px;
+  padding: 2px 8px;
+  border: 1px solid $border-color;
+  border-radius: 999px;
+}
+
+.profile--logout {
+  font-family: inherit;
+  font-size: 13px;
+  background: none;
+  border: 1px solid $border-color;
+  border-radius: 8px;
+  padding: 2px 8px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $border-color;
+    color: #fff;
+  }
+}
+
 main {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 4rem;
+  padding-bottom: 5rem;
   min-height: 100vh;
 }
 

@@ -4,9 +4,11 @@ import React, { memo, useEffect, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 
+import { logoPath } from '@component/app/shared-data/shared-data'
 import VolumeBtn from '@component/app/components/volume-btn'
 import InfoBtn from '@component/app/components/info-btn'
 import Balance from '@component/app/components/balance'
+import Profile from '@component/app/components/profile'
 
 function Header() {
   const [colored, setColored] = useState(false)
@@ -28,8 +30,8 @@ function Header() {
   return (
     <header className={colored ? 'header--colored' : ''}>
       <div className='logo--container'>
-        <Image src={'/game-asset/heart.svg'} alt='Logo' width={30} height={30}/>
-        <Link href='/'>Petty</Link>
+        <Image src={logoPath} alt='Petana logo' width={30} height={30}/>
+        <Link href='/'>Petana</Link>
         <VolumeBtn/>
         <InfoBtn/>
       </div>
@@ -39,9 +41,13 @@ function Header() {
             <Link href='/game'>Home</Link>
           </li>
           <li>
+            <Link href='/earn'>Earn</Link>
+          </li>
+          <li>
             <Link href='/about'>About</Link>
           </li>
           <Balance/>
+          <Profile/>
         </ul>
       </nav>
     </header>
@@ -49,4 +55,3 @@ function Header() {
 }
 
 export default memo(Header)
-

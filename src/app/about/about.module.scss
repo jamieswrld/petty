@@ -2,51 +2,51 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 60px;
+  gap: 40px;
+  padding: 20px 40px 60px;
+}
+
+.about--hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  text-align: center;
 }
 
 .about--text {
   display: flex;
   flex-direction: column;
   gap: 20px;
-  width: 560px;
+  max-width: 560px;
 
   & p {
     font-size: 18px;
+    line-height: 1.55;
 
     &.heading {
-      font-size: 30px;
+      font-size: 28px;
+      line-height: 1.3;
+      font-weight: 600;
     }
   }
 }
 
-.github--container {
+.about--links {
   display: flex;
   flex-direction: column;
-  gap: 14px;
-  width: 100%;
-
-  & .link {
-    &:hover {
-      text-decoration: underline;
-    }
-  }
-
-  & .content {
-    display: flex;
-    flex-direction: row;
-    gap: 14px;
-  }
-
-  & .info {
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-    padding: 14px;
-    align-items: start;
-  }
+  align-items: center;
+  gap: 20px;
 }
 
+.text--link {
+  font-size: 18px;
+  text-decoration: underline;
+
+  &:hover {
+    color: #4565e8;
+  }
+}
 
 .play--link {
   justify-self: center;

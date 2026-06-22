@@ -1,0 +1,107 @@
+$border-color: #4565e8;
+$body-color: #f4bda3;
+
+.login--container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+  text-align: center;
+  max-width: 520px;
+}
+
+.login--intro {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.title {
+  font-size: 44px;
+  line-height: 1.1;
+}
+
+.subtitle {
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 320px;
+  max-width: 100%;
+}
+
+.btn {
+  font-family: inherit;
+  font-size: 20px;
+  padding: 14px 20px;
+  border: 2px solid $border-color;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform 0.05s ease-in, filter 0.15s ease-in;
+
+  &:hover {
+    filter: brightness(1.05);
+  }
+
+  &:active {
+    transform: translateY(2px);
+  }
+
+  &:disabled {
+    cursor: default;
+    opacity: 0.7;
+  }
+}
+
+.btn--primary {
+  background-color: $border-color;
+  color: #fff;
+}
+
+.btn--secondary {
+  background-color: #fff;
+  color: #000;
+}
+
+.link--btn {
+  background: none;
+  border: none;
+  font-family: inherit;
+  font-size: 14px;
+  cursor: pointer;
+  text-decoration: underline;
+  color: inherit;
+}
+
+.hint {
+  font-size: 14px;
+  max-width: 360px;
+  opacity: 0.85;
+}
+
+.profile-blocked {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 400px;
+  padding: 16px 20px;
+  border: 2px solid #c0392b;
+  border-radius: 12px;
+  background: rgba(192, 57, 43, 0.08);
+}
+
+.profile-blocked--title {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.profile-blocked--text {
+  font-size: 14px;
+  line-height: 1.5;
+  margin: 0;
+}

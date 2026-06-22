@@ -1,7 +1,8 @@
 'use client'
 
-import React from 'react'
+import React, { useEffect } from 'react'
 import Image from 'next/image'
+import { useRouter } from 'next/navigation'
 
 import { petStore } from '@component/app/pet-store'
 
@@ -9,6 +10,8 @@ import Pet from '@component/app/(game-scope)/game/components/pet/pet'
 import ConditionsList from '@component/app/(game-scope)/game/components/conditions-list'
 import PlaceToWalkSelector from '../(game-scope)/game/components/place-to-walk-selector/place-to-walk-selector'
 import InteractionsList from '@component/app/(game-scope)/game/components/interaction/interactions-list'
+import DailyBonus from '../(game-scope)/game/components/daily-bonus/daily-bonus'
+import Rewards from '../(game-scope)/game/components/rewards/rewards'
 
 import { mealList } from '@component/app/shared-data/meals'
 import { beverageList } from '@component/app/shared-data/beverages'
@@ -16,15 +19,28 @@ import { toyList } from '@component/app/shared-data/toys'
 
 import styles from '../(game-scope)/game/game.module.scss'
 import usePet from '../hooks/usePet'
-import PetNotFound from '../components/pet-not-found'
+import usePlayer from '../hooks/usePlayer'
 
 export default function Game() {
   const pet = usePet()
+  const { player, loaded } = usePlayer()
+  const router = useRouter()
 
-  if (!pet) return <PetNotFound/>
+  useEffect(() => {
+    if (loaded && !player?.username) router.replace('/')
+  }, [loaded, player, router])
+
+  useEffect(() => {
+    if (loaded && player?.username && !pet) router.replace('/create')
+  }, [loaded, player, pet, router])
+
+  if (!pet) return null
 
   return (
-    <div className={styles['game--container']} style={{ backgroundImage: `url('/game-asset/bg.jpg')` }}>
+    <div
+      className={styles['game--container']}
+      style={{ background: 'linear-gradient(180deg, #7daffa 0%, #f4bda3 55%, #98D98E 100%)' }}
+    >
       <div className={styles['conditions-interactions--container']}>
         <ConditionsList/>
         <div className={styles['interactions--container']}>
@@ -61,6 +77,8 @@ export default function Game() {
           style={{ alignSelf: 'center' }}
         />
         {pet.urine > 50 && <PlaceToWalkSelector/>}
+        <DailyBonus/>
+        <Rewards/>
       </div>
     </div>
   )

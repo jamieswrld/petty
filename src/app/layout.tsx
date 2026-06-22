@@ -2,16 +2,20 @@ import React from 'react'
 import type { Metadata } from 'next'
 import { Pixelify_Sans } from 'next/font/google'
 
-import { metaTitle } from '@component/app/shared-data/shared-data'
+import { metaTitle, logoPath } from '@component/app/shared-data/shared-data'
 
 import './styles/globals.css'
 import Header from '@component/app/components/header'
+import SoundEffects from '@component/app/components/sound-effects'
+import LiveSocial from '@component/app/components/live-social/live-social'
+import TreasuryStatus from '@component/app/components/treasury-status/treasury-status'
+import SolanaProvider from '@component/app/components/solana/wallet-provider'
 
 const pixelify = Pixelify_Sans({ weight: ['400', '600'], subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: metaTitle,
-  description: 'Simple tamagotchi-like game. Choose your pet!',
+  description: 'Pixel Tamagotchi for grinders. Adopt a pet, earn coins, claim milestone rewards.',
 }
 
 export default function RootLayout( {
@@ -23,14 +27,18 @@ export default function RootLayout( {
     <html lang='en'>
     <head>
       <title>{metaTitle}</title>
-      <link rel='icon' type='image/svg+xml' href='/game-asset/heart.svg'/>
+      <link rel='icon' type='image/png' href={logoPath}/>
     </head>
     <body className={pixelify.className}>
-    <div className='body--container'>
-      <Header/>
-      <main>{children}</main>
-      <footer>Olga Swan &copy; 2023</footer>
-    </div>
+    <SolanaProvider>
+      <SoundEffects/>
+      <div className='body--container'>
+        <Header/>
+        <main>{children}</main>
+        <LiveSocial/>
+        <TreasuryStatus/>
+      </div>
+    </SolanaProvider>
     </body>
     </html>
   )

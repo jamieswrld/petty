@@ -1,0 +1,54 @@
+$border-color: #4565e8;
+
+.treasury {
+  position: fixed;
+  bottom: 16px;
+  left: 16px;
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 10px 12px;
+  border: 2px solid $border-color;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.92);
+  font-size: 12px;
+  max-width: 160px;
+  box-shadow: 0 4px 12px rgba(69, 101, 232, 0.12);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.label {
+  font-weight: 600;
+  font-size: 13px;
+}
+
+.live {
+  color: #2ecc71;
+  font-weight: 600;
+}
+
+.pending {
+  color: #888;
+  font-weight: 600;
+}
+
+.address {
+  font-family: monospace;
+  font-size: 11px;
+  opacity: 0.85;
+}
+
+.balances {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-weight: 600;
+  color: $border-color;
+}

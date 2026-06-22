@@ -96,6 +96,7 @@ main {
   justify-content: center;
   align-items: center;
   padding: 4rem;
+  padding-bottom: 5rem;
   min-height: 100vh;
 }
 

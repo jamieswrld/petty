@@ -5,7 +5,7 @@ export default function PetNotFound() {
     <div>
       <p>
         Sorry, but you don`t have a pet. Click{' '}
-        <Link style={{ textDecoration: 'underline' }} href='/'>
+        <Link style={{ textDecoration: 'underline' }} href='/create'>
           here
         </Link>{' '}
         to create one

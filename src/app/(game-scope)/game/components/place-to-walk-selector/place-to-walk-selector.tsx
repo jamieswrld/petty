@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation'
 
 import Carousel from '@component/app/components/carousel/carousel'
 import { walkBackgroundList } from '@component/app/shared-data/walkBackgrounds'
+import { playSound } from '@component/app/utils/sounds'
 
 import styles from './place-to-walk-selector.module.scss'
 
@@ -23,19 +24,20 @@ export default function PlaceToWalkSelector() {
         visibleItemsNumber={1}
       >
         {( slide ) => (
-          <Image
-            style={{ borderRadius: '10px' }}
-            key={slide}
-            src={slide}
-            alt={slide}
-            width={150}
-            height={100}
-            priority
-          />
+          <div
+            key={slide.id}
+            className={styles['place--preview']}
+            style={{ background: slide.background }}
+          >
+            <span>{slide.name}</span>
+          </div>
         )}
       </Carousel>
-      <button className={styles['walk--btn']} onClick={() => router.push(`/walk?place=${place}`)}>
-        <Image className={styles['walk--image']} src={'/buttons/walk-btn.svg'} alt='Play' width={88} height={36}/>
+      <button className={styles['walk--btn']} onClick={() => {
+        playSound('walk')
+        router.push(`/walk?place=${place.id}`)
+      }}>
+        <Image className={styles['walk--image']} src={'/buttons/walk-btn.svg'} alt='Walk' width={88} height={36}/>
       </button>
     </div>
   )

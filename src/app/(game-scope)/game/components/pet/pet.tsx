@@ -5,6 +5,7 @@ import gsap from 'gsap'
 
 import { onAction } from 'nanostores'
 import { petStore } from '@component/app/pet-store'
+import { grindStore } from '@component/app/grind-store'
 
 import Noti from '../noti/noti'
 import { notiStore } from '../noti/store'
@@ -12,6 +13,11 @@ import AnimatedBreathing from '@component/app/components/animations/animated-bre
 
 import styles from '@component/app/(game-scope)/game/game.module.scss'
 import { useGSAP } from '@gsap/react'
+import {
+  DECAY_INTERVAL_MS,
+  HAPPY_BONUS_EARN,
+  HAPPY_BONUS_INTERVAL_MS,
+} from '@component/app/shared-data/economy'
 
 type PetProps = {
   image: string
@@ -31,9 +37,22 @@ function Pet( { image, name, alt }: PetProps ) {
         petStore.reduceNeeds('fullness')
         petStore.reduceNeeds('thirst')
         reduceNeeds()
-      }, 10000)
+      }, DECAY_INTERVAL_MS)
     }
     reduceNeeds()
+    return () => clearTimeout(id)
+  }, [])
+
+  useEffect(() => {
+    let id: NodeJS.Timeout
+    const happyBonus = () => {
+      id = setTimeout(() => {
+        const pet = petStore.store.get()
+        if (pet && petStore.isHappy(pet)) petStore.earn(HAPPY_BONUS_EARN)
+        happyBonus()
+      }, HAPPY_BONUS_INTERVAL_MS)
+    }
+    happyBonus()
     return () => clearTimeout(id)
   }, [])
 
@@ -70,10 +89,17 @@ function Pet( { image, name, alt }: PetProps ) {
     })
   }, [animatePetJump])
 
+  const handlePetClick = () => {
+    animatePetJump()
+    if (grindStore.canPetTap()) {
+      if (petStore.petTap()) grindStore.recordPetTap()
+    }
+  }
+
   return (
     <>
       <Noti target={petRef}/>
-      <div className={styles['pet--container']} onClick={() => animatePetJump()}>
+      <div className={styles['pet--container']} onClick={handlePetClick}>
         <h1 style={{ alignSelf: 'center' }}>{name}</h1>
         <div ref={petRef} style={{ margin: '0', padding: '0' }}>
           <AnimatedBreathing
