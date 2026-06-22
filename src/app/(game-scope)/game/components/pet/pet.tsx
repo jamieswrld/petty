@@ -111,8 +111,8 @@ function Pet( { image, name, alt }: PetProps ) {
         <AnimatedBreathing
           image={assetPath(image)}
           alt={alt}
-          width={280}
-          height={200}
+          width={240}
+          height={170}
         />
       </div>
     </div>

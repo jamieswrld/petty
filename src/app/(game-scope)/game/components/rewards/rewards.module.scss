@@ -4,11 +4,13 @@ $border-color: #4565e8;
   display: flex;
   flex-direction: column;
   gap: 10px;
-  padding: 16px;
+  padding: 12px;
   border: 2px solid $border-color;
   border-radius: 12px;
   background-color: rgba(255, 255, 255, 0.85);
-  min-width: 220px;
+  width: 100%;
+  max-width: 210px;
+  min-width: 0;
 }
 
 .header {
@@ -64,13 +66,16 @@ $border-color: #4565e8;
   display: flex;
   flex-direction: column;
   gap: 8px;
+  max-height: 220px;
+  overflow-y: auto;
 }
 
 .milestone {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 14px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  font-size: 13px;
 }
 
 .milestone--threshold {

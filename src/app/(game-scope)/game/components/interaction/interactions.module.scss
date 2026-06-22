@@ -6,13 +6,18 @@
   border: 1px solid black;
   border-radius: 14px;
   background-color: thistle;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
 }
 
 .interactions--list {
   display: flex;
   flex-direction: row;
-  gap: 10px;
+  flex-wrap: wrap;
+  gap: 8px;
   align-items: center;
+  justify-content: flex-start;
 }
 
 .interaction {
@@ -25,8 +30,8 @@
   background-color: whitesmoke;
   border: none;
   border-radius: 10px;
-  width: 86px;
-  height: 86px;
+  width: 72px;
+  height: 72px;
   cursor: pointer;
   font-family: inherit;
 
