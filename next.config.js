@@ -1,6 +1,8 @@
 /** @type {import('next').NextConfig} */
+const isStaticExport = process.env.GITHUB_PAGES === 'true'
+
 const nextConfig = {
-    output: 'export',
+    ...(isStaticExport ? { output: 'export' } : {}),
     images: {
         unoptimized: true,
         domains: ['images.pexels.com', 'avatars.githubusercontent.com'],

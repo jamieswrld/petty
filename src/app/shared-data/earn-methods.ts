@@ -51,7 +51,7 @@ export const earnMethods: EarnMethod[] = [
     title: '$Petana milestone claims',
     coins: '500–3,000 $Petana',
     description:
-      'Lifetime coins earned unlock tiers. Sprout through Silver each claim 500 $Petana; Gold claims 1,500 and Diamond claims 3,000. Connect a Solana wallet in-game. Payouts are handled manually by the team.',
+      'Hit lifetime coin milestones, connect a wallet, and claim $Petana on-chain when the treasury is live. Test mode pays 1 token per claim for dry runs.',
     tip: `Progression: ${milestones.map(( m ) => {
       const token = m.tokenPayout ? ` → ${formatThreshold(m.tokenPayout)} $Petana` : ''
       return `${m.reward} (${formatThreshold(m.threshold)} coins${token})`

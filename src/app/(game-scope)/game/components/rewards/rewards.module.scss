@@ -106,6 +106,42 @@ $border-color: #4565e8;
   color: #2e7d32;
 }
 
+.milestone--locked {
+  font-size: 13px;
+  opacity: 0.6;
+}
+
+.test--banner {
+  font-size: 12px;
+  padding: 6px 10px;
+  border-radius: 8px;
+  background: #fff3cd;
+  border: 1px solid #e6b800;
+  margin: 0;
+}
+
+.offline--banner {
+  font-size: 12px;
+  padding: 6px 10px;
+  border-radius: 8px;
+  background: #f0f4ff;
+  border: 1px solid $border-color;
+  margin: 0;
+}
+
+.claim--error {
+  font-size: 13px;
+  color: #c0392b;
+  margin: 0;
+}
+
+.tx--link {
+  display: block;
+  font-size: 11px;
+  color: $border-color;
+  text-decoration: underline;
+}
+
 .milestone--label {
   display: flex;
   flex-direction: column;

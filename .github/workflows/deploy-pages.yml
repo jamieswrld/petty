@@ -28,6 +28,7 @@ jobs:
       - run: yarn install --frozen-lockfile
       - run: yarn build
         env:
+          GITHUB_PAGES: 'true'
           NEXT_PUBLIC_SOLANA_RPC: ${{ vars.NEXT_PUBLIC_SOLANA_RPC || 'https://api.mainnet-beta.solana.com' }}
           NEXT_PUBLIC_PETANA_MINT: ${{ vars.NEXT_PUBLIC_PETANA_MINT || '2mtF9f6XJ98S7hqGiwWUZzvd63Vtq1NT1oPqawFTpump' }}
           NEXT_PUBLIC_TREASURY_WALLET: ${{ vars.NEXT_PUBLIC_TREASURY_WALLET || '' }}
