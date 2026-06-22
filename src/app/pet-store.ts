@@ -15,6 +15,7 @@ import { grindStore } from '@component/app/grind-store'
 import { achievementsStore } from '@component/app/achievement-store'
 import { isBrowser, persistToStorage } from '@component/app/utils/storage'
 import { assetPath } from '@component/app/utils/asset-path'
+import { getSlideForImage } from '@component/app/shared-data/slides'
 
 export const KEY = 'pet'
 export type Field = 'happiness' | 'fullness' | 'thirst'
@@ -33,9 +34,13 @@ export const petStore = {
       const localPet = localStorage.getItem(KEY)
       if (!localPet) return
       const parsed = JSON.parse(localPet) as Pet
+      const image = assetPath(parsed.image)
+      const slide = getSlideForImage(image)
       store.set({
         ...parsed,
-        image: assetPath(parsed.image),
+        image,
+        name: slide?.name ?? parsed.name,
+        alt: slide?.alt ?? parsed.alt,
         totalEarned: parsed.totalEarned ?? 0,
       })
     } catch (error) {

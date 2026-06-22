@@ -21,11 +21,11 @@ import { playSound } from '@component/app/utils/sounds'
 
 import styles from '@component/app/styles/home.module.scss'
 
-const createPet = ( selectedSlide: Slide, petName: string ) => {
+const createPet = ( selectedSlide: Slide ) => {
   const pet: Pet = {
     image: selectedSlide.image,
     alt: selectedSlide.alt,
-    name: petName,
+    name: selectedSlide.name,
     diet: selectedSlide.diet,
     fullness: 100,
     thirst: 100,
@@ -46,7 +46,6 @@ export default function CreateWorld() {
   const showHeartRef = useRef(showHeart)
   const [selectedSlide, setSelectedSlide] = useState(slides[0])
   const [username, setUsername] = useState('')
-  const [petName, setPetName] = useState('')
   const [submitting, setSubmitting] = useState(false)
   const [submitError, setSubmitError] = useState<string | null>(null)
 
@@ -74,10 +73,6 @@ export default function CreateWorld() {
 
   const handleUsername = ( e: React.ChangeEvent<HTMLInputElement> ) => {
     setUsername(e.target.value.replace(/[^a-zA-Z0-9_ ]/g, ''))
-  }
-
-  const handlePetName = ( e: React.ChangeEvent<HTMLInputElement> ) => {
-    setPetName(e.target.value.replace(/[^a-zA-Z0-9 ]/g, ''))
   }
 
   useEffect(() => {
@@ -159,7 +154,7 @@ export default function CreateWorld() {
 
         playSound('claim')
         playerStore.setUsername(trimmedUsername)
-        createPet(selectedSlide, petName.trim() || selectedSlide.alt)
+        createPet(selectedSlide)
         router.push('/game')
       }}
     >
@@ -190,17 +185,6 @@ export default function CreateWorld() {
         )}
       </div>
 
-      <div className={styles['naming--container']}>
-        <h2>Pet name</h2>
-        <input
-          type='text'
-          placeholder='Enter your pet name'
-          value={petName}
-          onChange={handlePetName}
-          maxLength={24}
-        />
-      </div>
-
       <div className={styles['pet-options--container']}>
         <h3>Choose your pet!</h3>
         <Carousel
@@ -225,7 +209,8 @@ export default function CreateWorld() {
                 height={160}
                 priority
               />
-              <h3>{slide.alt}</h3>
+              <h3>{slide.name}</h3>
+              <p className={styles['slide--species']}>{slide.alt}</p>
             </div>
           )}
         </Carousel>
