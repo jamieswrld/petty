@@ -22,11 +22,11 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
-          cache: npm
+          node-version: 22
+          cache: yarn
 
-      - run: npm ci
-      - run: npm run build
+      - run: yarn install --frozen-lockfile
+      - run: yarn build
         env:
           NEXT_PUBLIC_SOLANA_RPC: ${{ vars.NEXT_PUBLIC_SOLANA_RPC || 'https://api.mainnet-beta.solana.com' }}
           NEXT_PUBLIC_PETANA_MINT: ${{ vars.NEXT_PUBLIC_PETANA_MINT || '2mtF9f6XJ98S7hqGiwWUZzvd63Vtq1NT1oPqawFTpump' }}
