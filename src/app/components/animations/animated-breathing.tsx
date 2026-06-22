@@ -4,6 +4,8 @@ import Image from 'next/image'
 import gsap from 'gsap'
 import { useGSAP } from '@gsap/react'
 
+import { assetPath } from '@component/app/utils/asset-path'
+
 import styles from '@component/app/styles/home.module.scss'
 
 interface AnimatedBreathingProps {
@@ -43,7 +45,7 @@ export default function AnimatedBreathing({
     <Image
       ref={petRef}
       className={styles[style ?? '']}
-      src={image}
+      src={assetPath(image)}
       alt={alt ?? 'image'}
       width={width}
       height={height}

@@ -1,6 +1,8 @@
 import React, { memo, useEffect, useState } from 'react'
 import Image from 'next/image'
 
+import { assetPath } from '@component/app/utils/asset-path'
+
 import styles from '@component/app/styles/home.module.scss'
 
 interface AnimatedSwapProps {
@@ -41,7 +43,7 @@ function AnimatedSwap({
   return (
     <Image
       className={styles[style ?? '']}
-      src={currentImage}
+      src={assetPath(currentImage)}
       alt={alt ?? 'image'}
       width={width}
       height={height}

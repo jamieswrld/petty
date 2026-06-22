@@ -4,6 +4,7 @@ import { ReactNode } from 'react'
 import Image from 'next/image'
 
 import { Field } from '@component/app/pet-store'
+import { assetPath } from '@component/app/utils/asset-path'
 import { action, atom, computed } from 'nanostores'
 
 type NotiType = 'yummy' | 'pee' | 'speak' | 'play' | Field
@@ -25,8 +26,8 @@ const addTimeout = 10000 //milliseconds
 
 const getNotiElement = ( type: NotiType ): ReactNode => {
   let src = ''
-  const eatDrinkNotis = ['noti/eat-drink/noti-yum.svg', 'noti/eat-drink/noti-yummy.svg']
-  const playNotis = ['noti/play/noti-heart.svg', 'noti/play/noti-woah.svg']
+  const eatDrinkNotis = ['/noti/eat-drink/noti-yum.svg', '/noti/eat-drink/noti-yummy.svg']
+  const playNotis = ['/noti/play/noti-heart.svg', '/noti/play/noti-woah.svg']
 
   switch (type) {
     case 'yummy': {
@@ -34,11 +35,11 @@ const getNotiElement = ( type: NotiType ): ReactNode => {
       break
     }
     case 'pee': {
-      src = 'noti/noti-pee.svg'
+      src = '/noti/noti-pee.svg'
       break
     }
     case 'speak': {
-      src = 'noti/noti-luv.svg'
+      src = '/noti/noti-luv.svg'
       break
     }
     case 'play': {
@@ -46,20 +47,20 @@ const getNotiElement = ( type: NotiType ): ReactNode => {
       break
     }
     case 'happiness': {
-      src = 'noti/noti-miss.svg'
+      src = '/noti/noti-miss.svg'
       break
     }
     case 'fullness': {
-      src = 'noti/noti-hungry.svg'
+      src = '/noti/noti-hungry.svg'
       break
     }
     case 'thirst': {
-      src = 'noti/noti-thirsty.svg'
+      src = '/noti/noti-thirsty.svg'
       break
     }
   }
 
-  return <Image src={src} alt='Notification' width={178} height={100}/>
+  return <Image src={assetPath(src)} alt='Notification' width={178} height={100}/>
 }
 
 export const notiStore = {

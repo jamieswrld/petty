@@ -1,0 +1,14 @@
+.noti {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 30;
+  pointer-events: none;
+  max-width: min(200px, 35vw);
+}
+
+.noti img {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+}

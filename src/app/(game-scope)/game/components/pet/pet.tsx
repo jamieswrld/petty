@@ -8,10 +8,10 @@ import { petStore } from '@component/app/pet-store'
 import { grindStore } from '@component/app/grind-store'
 import { achievementsStore } from '@component/app/achievement-store'
 
-import Noti from '../noti/noti'
 import MoodBubble from '../mood-bubble/mood-bubble'
 import { notiStore } from '../noti/store'
 import AnimatedBreathing from '@component/app/components/animations/animated-breathing'
+import { assetPath } from '@component/app/utils/asset-path'
 
 import styles from '@component/app/(game-scope)/game/game.module.scss'
 import { useGSAP } from '@gsap/react'
@@ -104,21 +104,18 @@ function Pet( { image, name, alt }: PetProps ) {
   }
 
   return (
-    <>
-      <Noti target={petRef}/>
-      <div className={styles['pet--container']} onClick={handlePetClick}>
-        <h1 style={{ alignSelf: 'center' }}>{name}</h1>
-        {pet && <MoodBubble pet={pet}/>}
-        <div ref={petRef} style={{ margin: '0', padding: '0' }}>
-          <AnimatedBreathing
-            image={image}
-            alt={alt}
-            width={350}
-            height={250}
-          />
-        </div>
+    <div className={styles['pet--container']} onClick={handlePetClick}>
+      <h1 className={styles['pet--name']}>{name}</h1>
+      {pet && <MoodBubble pet={pet}/>}
+      <div ref={petRef} className={styles['pet--sprite']}>
+        <AnimatedBreathing
+          image={assetPath(image)}
+          alt={alt}
+          width={280}
+          height={200}
+        />
       </div>
-    </>
+    </div>
   )
 }
 

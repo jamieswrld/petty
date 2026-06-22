@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation'
 import { petStore } from '@component/app/pet-store'
 
 import Pet from '@component/app/(game-scope)/game/components/pet/pet'
+import Noti from '@component/app/(game-scope)/game/components/noti/noti'
 import ConditionsList from '@component/app/(game-scope)/game/components/conditions-list'
 import PlaceToWalkSelector from '../(game-scope)/game/components/place-to-walk-selector/place-to-walk-selector'
 import InteractionsList from '@component/app/(game-scope)/game/components/interaction/interactions-list'
@@ -54,53 +55,58 @@ export default function Game() {
         className={styles['game--container']}
         style={{ background: 'linear-gradient(180deg, #7daffa 0%, #f4bda3 55%, #98D98E 100%)' }}
       >
+        <Noti/>
         <div className={styles['game-hud']}>
           <MilestoneBar totalEarned={pet.totalEarned ?? 0}/>
           <PetNeedsHint pet={pet}/>
         </div>
         <div className={styles['game-body']}>
-      <div className={styles['conditions-interactions--container']}>
-        <ConditionsList/>
-        <div className={styles['interactions--container']}>
-          <InteractionsList
-            key='meals-list'
-            title='Meals'
-            array={mealList.filter(( e ) => e.diet === pet.diet)}
-            onClick={petStore.eat}
-            balance={pet.balance}
-          />
-          <InteractionsList
-            key='beverages-list'
-            title='Beverages'
-            array={beverageList}
-            onClick={petStore.drink}
-            balance={pet.balance}
-          />
-          <InteractionsList
-            key='toys-list'
-            title='Toys'
-            array={toyList}
-            onClick={petStore.play}
-            balance={pet.balance}
-          />
+          <div className={styles['conditions-interactions--container']}>
+            <ConditionsList/>
+            <div className={styles['interactions--container']}>
+              <InteractionsList
+                key='meals-list'
+                title='Meals'
+                array={mealList.filter(( e ) => e.diet === pet.diet)}
+                onClick={petStore.eat}
+                balance={pet.balance}
+              />
+              <InteractionsList
+                key='beverages-list'
+                title='Beverages'
+                array={beverageList}
+                onClick={petStore.drink}
+                balance={pet.balance}
+              />
+              <InteractionsList
+                key='toys-list'
+                title='Toys'
+                array={toyList}
+                onClick={petStore.play}
+                balance={pet.balance}
+              />
+            </div>
+          </div>
+
+          <div className={styles['scene--container']}>
+            <Pet image={pet.image} name={pet.name} alt={pet.alt}/>
+            <Image
+              className={styles['scene--house']}
+              src='/game-asset/pet-home.svg'
+              alt='Pet home'
+              width={200}
+              height={208}
+            />
+          </div>
+
+          <div className={styles['places--container']}>
+            {pet.urine > 50 && <PlaceToWalkSelector/>}
+            <DailyQuest/>
+            <DailyBonus/>
+            <Rewards/>
+          </div>
         </div>
       </div>
-      <Pet image={pet.image} name={pet.name} alt={pet.alt}/>
-      <div className={styles['places--container']}>
-        <Image
-          src='/game-asset/pet-home.svg'
-          alt='Pet home'
-          width={200}
-          height={208}
-          style={{ alignSelf: 'center' }}
-        />
-        {pet.urine > 50 && <PlaceToWalkSelector/>}
-        <DailyQuest/>
-        <DailyBonus/>
-        <Rewards/>
-      </div>
-        </div>
-    </div>
     </>
   )
 }

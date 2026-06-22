@@ -1,4 +1,5 @@
 .game--container {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -19,6 +20,7 @@
 .game-body {
   display: flex;
   flex-direction: row;
+  align-items: flex-end;
   gap: 16px;
 }
 
@@ -26,6 +28,21 @@
   display: flex;
   flex-direction: column;
   gap: 30px;
+  flex-shrink: 0;
+}
+
+.scene--container {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  min-width: 220px;
+}
+
+.scene--house {
+  margin-top: -32px;
+  z-index: 1;
 }
 
 .conditions-list--container {
@@ -59,16 +76,30 @@
 .pet--container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-content: center;
-  gap: 20px;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
   cursor: pointer;
+  z-index: 2;
+}
+
+.pet--name {
+  align-self: center;
+  font-size: 1.25rem;
+  margin: 0;
+}
+
+.pet--sprite {
+  margin: 0;
+  padding: 0;
+  line-height: 0;
 }
 
 .places--container {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-content: center;
-  gap: 40px;
+  align-items: center;
+  gap: 16px;
+  flex-shrink: 0;
 }

@@ -1,35 +1,20 @@
 'use client'
 
-import { RefObject, useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useStore } from '@nanostores/react'
 
 import { notiStore } from './store'
 
+import styles from './noti.module.scss'
+
 const removeAfter = 5000
 
-export default function Noti( {
-  target,
-}: {
-  target: RefObject<HTMLDivElement>
-} ) {
+export default function Noti() {
   const currentNoti = useStore(notiStore.currentNotiStore)
-  const [position, setPosition] = useState<{ top: number; left: number }>({
-    top: 0,
-    left: 0,
-  })
 
   useEffect(() => {
-    if (target.current) {
-      const targetRect = target.current.getBoundingClientRect()
+    if (!currentNoti) return
 
-      const top = targetRect.top - 130
-      const left = targetRect.left + ( targetRect.width * 2 ) / 3
-
-      setPosition({ top, left })
-    }
-  }, [target])
-
-  useEffect(() => {
     const id = setTimeout(() => {
       notiStore.removeFirst()
     }, removeAfter)
@@ -40,13 +25,7 @@ export default function Noti( {
   if (!currentNoti) return null
 
   return (
-    <div
-      style={{
-        position: 'absolute',
-        top: `${position.top}px`,
-        left: `${position.left}px`,
-      }}
-    >
+    <div className={styles.noti} aria-live='polite'>
       {currentNoti.element}
     </div>
   )
