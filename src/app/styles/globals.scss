@@ -65,9 +65,9 @@ header {
   gap: 10px;
 }
 
-/* Black-backed pixel logo: blend out the flat background on site colors */
+/* Pixel logo — show as-is; avoid mix-blend which hides art on light backgrounds */
 .petana-logo {
-  mix-blend-mode: lighten;
+  image-rendering: pixelated;
 }
 
 .hero-logo {

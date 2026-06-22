@@ -59,7 +59,7 @@ header.header--colored {
 }
 
 .petana-logo {
-  mix-blend-mode: lighten;
+  image-rendering: pixelated;
 }
 
 .hero-logo {

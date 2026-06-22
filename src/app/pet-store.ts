@@ -14,6 +14,7 @@ import { notiStore } from './(game-scope)/game/components/noti/store'
 import { grindStore } from '@component/app/grind-store'
 import { achievementsStore } from '@component/app/achievement-store'
 import { isBrowser, persistToStorage } from '@component/app/utils/storage'
+import { assetPath } from '@component/app/utils/asset-path'
 
 export const KEY = 'pet'
 export type Field = 'happiness' | 'fullness' | 'thirst'
@@ -32,13 +33,17 @@ export const petStore = {
       const localPet = localStorage.getItem(KEY)
       if (!localPet) return
       const parsed = JSON.parse(localPet) as Pet
-      store.set({ ...parsed, totalEarned: parsed.totalEarned ?? 0 })
+      store.set({
+        ...parsed,
+        image: assetPath(parsed.image),
+        totalEarned: parsed.totalEarned ?? 0,
+      })
     } catch (error) {
       //ignored
     }
   }),
   createPet: action(store, 'createPet', ( store, pet: Pet ) => {
-    store.set(pet)
+    store.set({ ...pet, image: assetPath(pet.image) })
   }),
   reduceNeeds: action(store, 'reduceNeeds', ( store, field: Field ) => {
     const pet = store.get()

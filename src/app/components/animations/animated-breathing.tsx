@@ -24,6 +24,7 @@ export default function AnimatedBreathing({
   const petRef = useRef<HTMLImageElement>(null)
 
   useGSAP(() => {
+    if (!petRef.current) return
     gsap
       .timeline({ repeat: -1 })
       .from(petRef.current, {

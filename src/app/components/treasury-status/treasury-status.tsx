@@ -22,8 +22,16 @@ export default function TreasuryStatus() {
 
   useEffect(() => {
     fetch('/api/treasury/status')
-      .then(( r ) => r.json())
+      .then(async ( r ) => {
+        const type = r.headers.get('content-type') ?? ''
+        if (!r.ok || !type.includes('application/json')) {
+          setError('Could not load treasury')
+          return
+        }
+        return r.json()
+      })
       .then(( data ) => {
+        if (!data) return
         if (data.error) setError(data.error)
         else setStatus(data as TreasuryStatus)
       })

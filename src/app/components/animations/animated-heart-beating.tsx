@@ -24,6 +24,7 @@ export default function AnimatedHeartBeating({
   const heartRef = useRef<HTMLImageElement>(null)
 
   useGSAP(() => {
+    if (!heartRef.current) return
     gsap.from(heartRef.current, {
       scale: 1.1,
       duration: 0.8,
