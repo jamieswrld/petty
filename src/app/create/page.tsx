@@ -140,22 +140,21 @@ export default function CreateWorld() {
               authType: player.authType,
             }),
           })
-          const data = await res.json()
 
-          if (!res.ok) {
+          if (res.status === 409) {
+            const data = await res.json()
             setSubmitError(data.reason || data.error || 'Could not create profile')
             setSubmitting(false)
             return
           }
-
-          playSound('claim')
-          playerStore.setUsername(trimmedUsername)
-          createPet(selectedSlide, petName.trim() || selectedSlide.alt)
-          router.push('/game')
         } catch {
-          setSubmitError('Something went wrong. Try again.')
-          setSubmitting(false)
+          // Static GitHub Pages has no API — continue with client-only save.
         }
+
+        playSound('claim')
+        playerStore.setUsername(trimmedUsername)
+        createPet(selectedSlide, petName.trim() || selectedSlide.alt)
+        router.push('/game')
       }}
     >
       {showHeart && <AnimatedHeartBeating image={logoPath} alt='Petana logo' style='heart'/>}

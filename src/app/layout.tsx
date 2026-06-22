@@ -27,7 +27,7 @@ export default function RootLayout( {
     <html lang='en'>
     <head>
       <title>{metaTitle}</title>
-      <link rel='icon' type='image/png' href={logoPath}/>
+      <link rel='icon' type='image/svg+xml' href={logoPath}/>
     </head>
     <body className={pixelify.className}>
     <SolanaProvider>
