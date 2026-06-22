@@ -9,7 +9,7 @@ export default function About() {
   return (
     <div className={styles['about--container']}>
       <div className={styles['about--hero']}>
-        <Image className='petana-logo' src={logoPath} alt='Petana logo' width={64} height={64}/>
+        <Image className='petana-logo' src={logoPath} alt='Petana logo' width={120} height={120}/>
         <p className={styles.heading}>We are memecoin traders who wanted a Tamagotchi.</p>
       </div>
 

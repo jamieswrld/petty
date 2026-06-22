@@ -70,6 +70,12 @@ header {
   mix-blend-mode: lighten;
 }
 
+.hero-logo {
+  width: 168px;
+  height: auto;
+  max-width: min(168px, 40vw);
+}
+
 .header--btn {
   transition: 0.8ms ease-in;
 

@@ -82,9 +82,14 @@ export default function Login() {
 
   return (
     <div className={styles['login--container']}>
-      <AnimatedHeartBeating image={logoPath} alt='Petana logo' width={90} height={90}/>
-
-      <div className={styles['login--intro']}>
+      <div className={styles['login--hero']}>
+        <AnimatedHeartBeating
+          image={logoPath}
+          alt='Petana logo'
+          style='hero-logo'
+          width={168}
+          height={168}
+        />
         <h1 className={styles.title}>Welcome to Petana</h1>
         <p className={styles.subtitle}>
           Adopt a pixel pet, grind daily streaks, and earn coins as you care for your companion.

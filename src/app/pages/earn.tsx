@@ -12,7 +12,7 @@ export default function Earn() {
   return (
     <div className={styles['earn--container']}>
       <div className={styles['earn--intro']}>
-        <Image className='petana-logo' src={logoPath} alt='Petana logo' width={56} height={56}/>
+        <Image className='petana-logo' src={logoPath} alt='Petana logo' width={120} height={120}/>
         <h1>How to Earn</h1>
         <p>
           Petana is built for grinders. Coins fuel your pet&apos;s care loop and stack toward

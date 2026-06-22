@@ -103,7 +103,13 @@ export default function CreateWorld() {
   if (profileBlocked) {
     return (
       <div className={styles['profile-blocked']}>
-        <AnimatedHeartBeating image={logoPath} alt='Petana logo' style='heart'/>
+        <AnimatedHeartBeating
+          image={logoPath}
+          alt='Petana logo'
+          style='hero-logo'
+          width={140}
+          height={140}
+        />
         <h2>One profile per connection</h2>
         <p>
           {eligibility.reason ?? 'Only one Petana profile is allowed from your network.'}
@@ -157,7 +163,15 @@ export default function CreateWorld() {
         router.push('/game')
       }}
     >
-      {showHeart && <AnimatedHeartBeating image={logoPath} alt='Petana logo' style='heart'/>}
+      {showHeart && (
+        <AnimatedHeartBeating
+          image={logoPath}
+          alt='Petana logo'
+          style='hero-logo'
+          width={140}
+          height={140}
+        />
+      )}
 
       <div className={styles['naming--container']}>
         <h2>Name your Petana world</h2>
