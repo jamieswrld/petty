@@ -26,6 +26,10 @@ jobs:
           cache: yarn
 
       - run: yarn install --frozen-lockfile
+
+      - name: Static export (no server API on GitHub Pages)
+        run: rm -rf src/app/api
+
       - run: yarn build
         env:
           GITHUB_PAGES: 'true'

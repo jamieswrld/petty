@@ -175,7 +175,6 @@ export default function Rewards() {
         {milestones.map(( m ) => {
           const unlocked = totalEarned >= m.threshold
           const record = player.walletAddress ? claimForWallet(m.threshold) : undefined
-          const claimed = record?.status === 'confirmed' || record?.status === 'requested'
           const hasToken = m.tokenPayout != null
           const isClaiming = claimingThreshold === m.threshold
           return (
