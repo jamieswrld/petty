@@ -13,6 +13,7 @@ import AnimatedHeartBeating from './components/animations/animated-heart-beating
 import { playSound } from './utils/sounds'
 
 import { logoPath } from './shared-data/shared-data'
+import ContractAddress from './components/contract-address'
 
 import styles from './styles/login.module.scss'
 
@@ -145,6 +146,8 @@ export default function Login() {
       <p className={styles.hint}>
         Connecting a wallet lets you claim rewards once you hit milestones in-game.
       </p>
+
+      <ContractAddress className={styles.ca}/>
     </div>
   )
 }

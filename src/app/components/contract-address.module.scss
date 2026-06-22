@@ -1,0 +1,44 @@
+$border-color: #4565e8;
+
+.ca {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  text-align: center;
+}
+
+.label {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+
+.address {
+  font-family: inherit;
+  font-size: 13px;
+  padding: 6px 12px;
+  border: 2px solid $border-color;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.85);
+  cursor: pointer;
+  max-width: 100%;
+  word-break: break-all;
+
+  &:hover {
+    background: #fff;
+  }
+
+  &:active {
+    position: relative;
+    top: 1px;
+  }
+}
+
+.feedback {
+  font-size: 11px;
+  opacity: 0.7;
+  min-height: 14px;
+}

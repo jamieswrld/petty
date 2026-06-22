@@ -16,6 +16,7 @@ import DailyQuest from '../(game-scope)/game/components/daily-quest/daily-quest'
 import Rewards from '../(game-scope)/game/components/rewards/rewards'
 import MilestoneBar from '../(game-scope)/game/components/milestone-bar/milestone-bar'
 import PetNeedsHint from '../(game-scope)/game/components/pet-needs-hint/pet-needs-hint'
+import ContractAddress from '../components/contract-address'
 import AchievementToast from '../components/achievement-toast/achievement-toast'
 import { achievementsStore } from '../achievement-store'
 import { grindStore } from '../grind-store'
@@ -59,6 +60,7 @@ export default function Game() {
         <div className={styles['game-hud']}>
           <MilestoneBar totalEarned={pet.totalEarned ?? 0}/>
           <PetNeedsHint pet={pet}/>
+          <ContractAddress/>
         </div>
         <div className={styles['game-body']}>
           <div className={styles['conditions-interactions--container']}>
