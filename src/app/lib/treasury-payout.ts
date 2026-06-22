@@ -29,7 +29,7 @@ export async function sendTokenPayout(
   const decimals = getTokenDecimals()
   const rawAmount = BigInt(Math.round(amount * 10 ** decimals))
 
-  if (rawAmount <= 0n) throw new Error('Invalid payout amount')
+  if (rawAmount <= BigInt(0)) throw new Error('Invalid payout amount')
 
   const treasuryAta = getAssociatedTokenAddressSync(mint, treasury.publicKey)
   const recipientAta = getAssociatedTokenAddressSync(mint, recipientPk)

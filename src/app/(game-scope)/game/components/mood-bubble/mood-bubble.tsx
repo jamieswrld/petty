@@ -12,10 +12,7 @@ type Props = {
 }
 
 export default function MoodBubble( { pet }: Props ) {
-  const mood = useMemo(
-    () => getPetMood(pet),
-    [pet.fullness, pet.thirst, pet.happiness, pet.urine, pet],
-  )
+  const mood = useMemo(() => getPetMood(pet), [pet])
 
   return (
     <div className={`${styles.bubble} ${styles[`bubble--${mood.tone}`]}`} role='note'>
