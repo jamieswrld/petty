@@ -1,0 +1,43 @@
+$border-color: #4565e8;
+
+.share {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+}
+
+.btn {
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 8px 16px;
+  border: 2px solid $border-color;
+  border-radius: 999px;
+  background: #fff;
+  color: #19162e;
+  cursor: pointer;
+  transition: filter 0.15s ease-in, transform 0.05s ease-in;
+
+  &:hover {
+    filter: brightness(1.03);
+  }
+
+  &:active {
+    transform: translateY(1px);
+  }
+
+  &:disabled {
+    opacity: 0.65;
+    cursor: wait;
+  }
+}
+
+.hint {
+  margin: 0;
+  font-size: 11px;
+  opacity: 0.8;
+  text-align: center;
+  max-width: 240px;
+}

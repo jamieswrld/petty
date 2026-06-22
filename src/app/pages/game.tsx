@@ -17,6 +17,7 @@ import Rewards from '../(game-scope)/game/components/rewards/rewards'
 import MilestoneBar from '../(game-scope)/game/components/milestone-bar/milestone-bar'
 import PetNeedsHint from '../(game-scope)/game/components/pet-needs-hint/pet-needs-hint'
 import ContractAddress from '../components/contract-address'
+import SharePet from '../components/share-pet/share-pet'
 import AchievementToast from '../components/achievement-toast/achievement-toast'
 import { achievementsStore } from '../achievement-store'
 import { grindStore } from '../grind-store'
@@ -92,6 +93,7 @@ export default function Game() {
 
           <div className={styles['scene--container']}>
             <Pet image={pet.image} name={pet.name} alt={pet.alt}/>
+            <SharePet pet={pet} username={player?.username}/>
             <Image
               className={styles['scene--house']}
               src='/game-asset/pet-home.svg'

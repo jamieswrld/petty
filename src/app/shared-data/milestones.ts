@@ -17,6 +17,13 @@ export const milestones: Milestone[] = [
 export const levelForEarned = ( totalEarned: number ): number =>
   milestones.filter(( m ) => totalEarned >= m.threshold).length + 1
 
+/** Highest milestone tier reached, or Rookie before the first threshold. */
+export const rankForEarned = ( totalEarned: number ): string => {
+  const unlocked = milestones.filter(( m ) => totalEarned >= m.threshold)
+  if (unlocked.length === 0) return 'Rookie'
+  return unlocked[unlocked.length - 1].reward
+}
+
 export const nextMilestone = ( totalEarned: number ): Milestone | undefined =>
   milestones.find(( m ) => totalEarned < m.threshold)
 
