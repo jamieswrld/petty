@@ -12,6 +12,8 @@ $input-border: #8b8a8b;
 
 html {
   background-color: $background-html-color;
+  overflow-x: clip;
+  scroll-padding-top: 72px;
 }
 
 body {
@@ -22,10 +24,11 @@ body {
   flex-direction: column;
   justify-content: flex-start;
   align-items: stretch;
+  min-height: 100vh;
   background-color: $background-body-color;
   border: solid 2px $border-color;
   border-radius: 50px;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 a {
@@ -36,9 +39,11 @@ a {
 .body--container {
   display: flex;
   flex-direction: column;
+  flex: 1;
   width: 100%;
   max-width: 960px;
   min-width: 0;
+  min-height: 100vh;
 }
 
 header {
@@ -163,13 +168,14 @@ header {
 
 main {
   display: flex;
+  flex: 1;
   flex-direction: column;
   justify-content: flex-start;
   align-items: stretch;
   width: 100%;
   max-width: 100%;
-  padding: 1rem 0.75rem 5rem;
-  min-height: calc(100vh - 80px);
+  padding: 1rem 0.75rem 6rem;
+  min-height: 0;
 }
 
 input {

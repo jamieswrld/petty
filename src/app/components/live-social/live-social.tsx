@@ -40,6 +40,7 @@ export default function LiveSocial() {
   const [chatMode, setChatMode] = useState<'supabase' | 'api' | 'offline'>('offline')
   const lastMessageAt = useRef(0)
   const messagesEndRef = useRef<HTMLLIElement>(null)
+  const messagesListRef = useRef<HTMLUListElement>(null)
   const username = player?.username?.trim() || 'Guest'
   const useSupabase = isSupabaseLiveEnabled()
 
@@ -140,7 +141,10 @@ export default function LiveSocial() {
   }, [chatOpen, chatMode, fetchMessagesApi, mergeMessages])
 
   useEffect(() => {
-    if (chatOpen) messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
+    if (!chatOpen) return
+    const list = messagesListRef.current
+    if (!list) return
+    list.scrollTop = list.scrollHeight
   }, [messages, chatOpen])
 
   const toggleChat = () => {
@@ -205,7 +209,7 @@ export default function LiveSocial() {
             </p>
           )}
 
-          <ul className={styles.messages}>
+          <ul className={styles.messages} ref={messagesListRef}>
             {messages.length === 0 ? (
               <li className={styles.empty}>Say hi to other grinders!</li>
             ) : (

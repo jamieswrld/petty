@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useEffect, useMemo, useRef, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
 
@@ -42,8 +42,6 @@ export default function CreateWorld() {
   const { player, loaded } = usePlayer()
   const pet = usePet()
 
-  const [showHeart, setShowHeart] = useState(true)
-  const showHeartRef = useRef(showHeart)
   const [selectedSlide, setSelectedSlide] = useState(slides[0])
   const [username, setUsername] = useState('')
   const [submitting, setSubmitting] = useState(false)
@@ -75,23 +73,6 @@ export default function CreateWorld() {
     setUsername(e.target.value.replace(/[^a-zA-Z0-9_ ]/g, ''))
   }
 
-  useEffect(() => {
-    showHeartRef.current = showHeart
-  }, [showHeart])
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY || document.documentElement.scrollTop
-      if (scrollPosition < 100 !== showHeartRef.current) {
-        setShowHeart(scrollPosition < 100)
-      }
-    }
-    window.addEventListener('scroll', handleScroll)
-    return () => {
-      window.removeEventListener('scroll', handleScroll)
-    }
-  }, [])
-
   const canSubmit = username.trim().length >= 2 && !submitting
   const profileBlocked = loaded && !!player && !eligibility.loading && !eligibility.allowed
 
@@ -121,7 +102,7 @@ export default function CreateWorld() {
 
   return (
     <form
-      className={showHeart ? styles['pet--form'] : `${styles['pet--form']} ${styles['hide--heart']}`}
+      className={styles['pet--form']}
       onSubmit={async ( e ) => {
         e.preventDefault()
         if (!canSubmit || !player) return
@@ -158,15 +139,13 @@ export default function CreateWorld() {
         router.push('/game')
       }}
     >
-      {showHeart && (
-        <AnimatedHeartBeating
-          image={logoPath}
-          alt='Petana logo'
-          style='hero-logo'
-          width={140}
-          height={140}
-        />
-      )}
+      <AnimatedHeartBeating
+        image={logoPath}
+        alt='Petana logo'
+        style='hero-logo'
+        width={140}
+        height={140}
+      />
 
       <div className={styles['naming--container']}>
         <h2>Name your Petana world</h2>
