@@ -46,9 +46,16 @@ export default function SharePet( { pet, username }: Props ) {
         className={styles.btn}
         onClick={handleShare}
         disabled={sharing}
-        aria-label={`Share ${pet.name} on X`}
+        aria-label={`Share ${pet.name} on X, ${rank} rank`}
       >
-        {sharing ? 'Creating card…' : `Share ${pet.name} on X · ${rank}`}
+        <span className={styles['btn--label']}>
+          {sharing ? 'Creating card…' : 'Share on X'}
+        </span>
+        {!sharing && (
+          <span className={styles['btn--meta']}>
+            {pet.name} · {rank} rank
+          </span>
+        )}
       </button>
       {hint && <p className={styles.hint}>{hint}</p>}
     </div>

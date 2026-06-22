@@ -41,6 +41,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-end;
+  gap: 8px;
   min-width: 0;
   max-width: 100%;
 }
@@ -50,6 +51,7 @@
   z-index: 1;
   max-width: min(200px, 100%);
   height: auto;
+  pointer-events: none;
 }
 
 .conditions-list--container {

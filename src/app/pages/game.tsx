@@ -93,7 +93,6 @@ export default function Game() {
 
           <div className={styles['scene--container']}>
             <Pet image={pet.image} name={pet.name} alt={pet.alt}/>
-            <SharePet pet={pet} username={player?.username}/>
             <Image
               className={styles['scene--house']}
               src='/game-asset/pet-home.svg'
@@ -101,6 +100,7 @@ export default function Game() {
               width={200}
               height={208}
             />
+            <SharePet pet={pet} username={player?.username}/>
           </div>
 
           <div className={styles['places--container']}>
