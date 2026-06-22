@@ -6,13 +6,16 @@ import gsap from 'gsap'
 import { onAction } from 'nanostores'
 import { petStore } from '@component/app/pet-store'
 import { grindStore } from '@component/app/grind-store'
+import { achievementsStore } from '@component/app/achievement-store'
 
 import Noti from '../noti/noti'
+import MoodBubble from '../mood-bubble/mood-bubble'
 import { notiStore } from '../noti/store'
 import AnimatedBreathing from '@component/app/components/animations/animated-breathing'
 
 import styles from '@component/app/(game-scope)/game/game.module.scss'
 import { useGSAP } from '@gsap/react'
+import { useStore } from '@nanostores/react'
 import {
   DECAY_INTERVAL_MS,
   HAPPY_BONUS_EARN,
@@ -27,6 +30,7 @@ type PetProps = {
 
 function Pet( { image, name, alt }: PetProps ) {
   const petRef = useRef<HTMLDivElement>(null)
+  const pet = useStore(petStore.store)
   const { contextSafe } = useGSAP({ scope: petRef })
 
   useEffect(() => {
@@ -92,7 +96,10 @@ function Pet( { image, name, alt }: PetProps ) {
   const handlePetClick = () => {
     animatePetJump()
     if (grindStore.canPetTap()) {
-      if (petStore.petTap()) grindStore.recordPetTap()
+      if (petStore.petTap()) {
+        grindStore.recordPetTap()
+        achievementsStore.unlock('first_pet_tap')
+      }
     }
   }
 
@@ -101,6 +108,7 @@ function Pet( { image, name, alt }: PetProps ) {
       <Noti target={petRef}/>
       <div className={styles['pet--container']} onClick={handlePetClick}>
         <h1 style={{ alignSelf: 'center' }}>{name}</h1>
+        {pet && <MoodBubble pet={pet}/>}
         <div ref={petRef} style={{ margin: '0', padding: '0' }}>
           <AnimatedBreathing
             image={image}

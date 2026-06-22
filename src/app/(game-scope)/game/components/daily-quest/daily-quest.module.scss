@@ -1,0 +1,63 @@
+$border-color: #4565e8;
+
+.quest {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 12px 14px;
+  border: 2px solid $border-color;
+  border-radius: 12px;
+  background-color: rgba(255, 255, 255, 0.9);
+  min-width: 220px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title {
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.reward {
+  font-size: 13px;
+  padding: 2px 8px;
+  border: 1px solid $border-color;
+  border-radius: 999px;
+}
+
+.label {
+  font-size: 14px;
+  margin: 0;
+}
+
+.progress {
+  font-size: 13px;
+  margin: 0;
+  opacity: 0.8;
+}
+
+.claim {
+  font-family: inherit;
+  font-size: 14px;
+  padding: 8px 12px;
+  border: 2px solid $border-color;
+  border-radius: 8px;
+  background: $border-color;
+  color: #fff;
+  cursor: pointer;
+  margin-top: 4px;
+}
+
+.done,
+.pending {
+  font-size: 13px;
+  margin-top: 4px;
+}
+
+.done {
+  color: #2d7a3a;
+}

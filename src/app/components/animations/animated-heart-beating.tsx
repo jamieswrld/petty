@@ -36,7 +36,7 @@ export default function AnimatedHeartBeating({
   return (
     <Image
       ref={heartRef}
-      className={styles[style ?? '']}
+      className={`petana-logo ${styles[style ?? '']}`}
       src={image}
       alt={alt ?? 'image'}
       width={width}

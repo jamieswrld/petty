@@ -4,6 +4,7 @@ import React, { useEffect } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { petStore } from '@component/app/pet-store'
 import { grindStore } from '@component/app/grind-store'
+import { achievementsStore } from '@component/app/achievement-store'
 import { WALK_BASE_EARN, WALK_URINE_DRAIN } from '@component/app/shared-data/economy'
 import { walkBackgroundList } from '@component/app/shared-data/walkBackgrounds'
 
@@ -24,7 +25,9 @@ function Walk() {
 
   useEffect(() => {
     grindStore.tryGetFromLocalStorage()
+    achievementsStore.load()
     grindStore.recordWalk()
+    achievementsStore.unlock('first_walk')
 
     let id: NodeJS.Timeout
     const baseEarn = WALK_BASE_EARN

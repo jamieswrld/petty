@@ -19,6 +19,9 @@ export type GrindState = {
   lastWalkDate: string | null
   petTapsToday: number
   lastPetTapDate: string | null
+  careActionsToday: number
+  lastCareDate: string | null
+  lastQuestClaimDate: string | null
 }
 
 const todayKey = () => new Date().toISOString().slice(0, 10)
@@ -31,6 +34,9 @@ const defaultState = (): GrindState => ({
   lastWalkDate: null,
   petTapsToday: 0,
   lastPetTapDate: null,
+  careActionsToday: 0,
+  lastCareDate: null,
+  lastQuestClaimDate: null,
 })
 
 const store = atom<GrindState>(defaultState())
@@ -75,6 +81,7 @@ export const grindStore = {
       loginStreak: streak,
       walksToday: state.lastWalkDate === today ? state.walksToday : 0,
       petTapsToday: state.lastPetTapDate === today ? state.petTapsToday : 0,
+      careActionsToday: state.lastCareDate === today ? state.careActionsToday : 0,
     })
   }),
   claimDailyBonus: action(store, 'claimDailyBonus', ( store ) => {
@@ -127,4 +134,41 @@ export const grindStore = {
     const taps = state.lastPetTapDate === today ? state.petTapsToday : 0
     return Math.max(0, PET_TAP_DAILY_LIMIT - taps)
   },
+  recordCareAction: action(store, 'recordCareAction', ( store ) => {
+    const state = store.get()
+    const today = todayKey()
+    store.set({
+      ...state,
+      careActionsToday: state.lastCareDate === today ? state.careActionsToday + 1 : 1,
+      lastCareDate: today,
+    })
+  }),
+  isQuestComplete: ( questId: string ): boolean => {
+    const state = store.get()
+    const today = todayKey()
+    switch (questId) {
+      case 'walk':
+        return state.lastWalkDate === today && state.walksToday >= 1
+      case 'daily':
+        return state.lastDailyClaimDate === today
+      case 'care':
+        return state.lastCareDate === today && state.careActionsToday >= 3
+      default:
+        return false
+    }
+  },
+  canClaimQuest: ( questId: string ): boolean => {
+    const today = todayKey()
+    return (
+      store.get().lastQuestClaimDate !== today &&
+      grindStore.isQuestComplete(questId)
+    )
+  },
+  claimQuest: action(store, 'claimQuest', ( store, questId: string, reward: number ) => {
+    const today = todayKey()
+    if (store.get().lastQuestClaimDate === today) return 0
+    if (!grindStore.isQuestComplete(questId)) return 0
+    store.set({ ...store.get(), lastQuestClaimDate: today })
+    return reward
+  }),
 }

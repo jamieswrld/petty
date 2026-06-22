@@ -11,7 +11,13 @@ import ConditionsList from '@component/app/(game-scope)/game/components/conditio
 import PlaceToWalkSelector from '../(game-scope)/game/components/place-to-walk-selector/place-to-walk-selector'
 import InteractionsList from '@component/app/(game-scope)/game/components/interaction/interactions-list'
 import DailyBonus from '../(game-scope)/game/components/daily-bonus/daily-bonus'
+import DailyQuest from '../(game-scope)/game/components/daily-quest/daily-quest'
 import Rewards from '../(game-scope)/game/components/rewards/rewards'
+import MilestoneBar from '../(game-scope)/game/components/milestone-bar/milestone-bar'
+import PetNeedsHint from '../(game-scope)/game/components/pet-needs-hint/pet-needs-hint'
+import AchievementToast from '../components/achievement-toast/achievement-toast'
+import { achievementsStore } from '../achievement-store'
+import { grindStore } from '../grind-store'
 
 import { mealList } from '@component/app/shared-data/meals'
 import { beverageList } from '@component/app/shared-data/beverages'
@@ -34,13 +40,25 @@ export default function Game() {
     if (loaded && player?.username && !pet) router.replace('/create')
   }, [loaded, player, pet, router])
 
+  useEffect(() => {
+    grindStore.tryGetFromLocalStorage()
+    achievementsStore.load()
+  }, [])
+
   if (!pet) return null
 
   return (
-    <div
-      className={styles['game--container']}
-      style={{ background: 'linear-gradient(180deg, #7daffa 0%, #f4bda3 55%, #98D98E 100%)' }}
-    >
+    <>
+      <AchievementToast/>
+      <div
+        className={styles['game--container']}
+        style={{ background: 'linear-gradient(180deg, #7daffa 0%, #f4bda3 55%, #98D98E 100%)' }}
+      >
+        <div className={styles['game-hud']}>
+          <MilestoneBar totalEarned={pet.totalEarned ?? 0}/>
+          <PetNeedsHint pet={pet}/>
+        </div>
+        <div className={styles['game-body']}>
       <div className={styles['conditions-interactions--container']}>
         <ConditionsList/>
         <div className={styles['interactions--container']}>
@@ -77,9 +95,12 @@ export default function Game() {
           style={{ alignSelf: 'center' }}
         />
         {pet.urine > 50 && <PlaceToWalkSelector/>}
+        <DailyQuest/>
         <DailyBonus/>
         <Rewards/>
       </div>
+        </div>
     </div>
+    </>
   )
 }

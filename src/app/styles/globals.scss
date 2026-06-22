@@ -65,6 +65,11 @@ header {
   gap: 10px;
 }
 
+/* Black-backed pixel logo: blend out the flat background on site colors */
+.petana-logo {
+  mix-blend-mode: lighten;
+}
+
 .header--btn {
   transition: 0.8ms ease-in;
 

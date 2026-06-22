@@ -11,6 +11,8 @@ import {
   PET_TAP_EARN,
 } from '@component/app/shared-data/economy'
 import { notiStore } from './(game-scope)/game/components/noti/store'
+import { grindStore } from '@component/app/grind-store'
+import { achievementsStore } from '@component/app/achievement-store'
 import { isBrowser, persistToStorage } from '@component/app/utils/storage'
 
 export const KEY = 'pet'
@@ -64,6 +66,8 @@ export const petStore = {
       }
       store.set(newValue)
 
+      grindStore.recordCareAction()
+      achievementsStore.unlock('first_care')
       notiStore.add('yummy')
       notiStore.remove('fullness')
     }
@@ -81,6 +85,8 @@ export const petStore = {
       }
       store.set(newValue)
 
+      grindStore.recordCareAction()
+      achievementsStore.unlock('first_care')
       notiStore.add('yummy')
       notiStore.remove('thirst')
 
@@ -112,6 +118,8 @@ export const petStore = {
       }
       store.set(newValue)
 
+      grindStore.recordCareAction()
+      achievementsStore.unlock('first_care')
       notiStore.add('play')
       notiStore.remove('happiness')
     }

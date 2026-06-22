@@ -1,0 +1,54 @@
+.bubble {
+  align-self: center;
+  position: relative;
+  padding: 8px 14px;
+  border: 2px solid #3d3530;
+  border-radius: 14px;
+  font-size: 15px;
+  max-width: 200px;
+  text-align: center;
+  background: #fff;
+}
+
+.bubble::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 8px solid transparent;
+  border-top-color: #3d3530;
+}
+
+.bubble--happy {
+  background: #ffe8e8;
+  border-color: #e8877e;
+}
+
+.bubble--happy::after {
+  border-top-color: #e8877e;
+}
+
+.bubble--urgent {
+  background: #fff3cd;
+  border-color: #c0392b;
+  animation: wiggle 0.5s ease-in-out infinite alternate;
+}
+
+.bubble--urgent::after {
+  border-top-color: #c0392b;
+}
+
+.bubble--sad {
+  background: #f0f4ff;
+  border-color: #4565e8;
+}
+
+.bubble--sad::after {
+  border-top-color: #4565e8;
+}
+
+@keyframes wiggle {
+  from { transform: rotate(-1deg); }
+  to { transform: rotate(1deg); }
+}

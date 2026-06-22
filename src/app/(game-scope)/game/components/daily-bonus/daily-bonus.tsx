@@ -5,6 +5,7 @@ import { useStore } from '@nanostores/react'
 
 import { grindStore } from '@component/app/grind-store'
 import { petStore } from '@component/app/pet-store'
+import { achievementsStore } from '@component/app/achievement-store'
 import { DAILY_BASE_REWARD, DAILY_STREAK_CAP } from '@component/app/shared-data/economy'
 import { playSound } from '@component/app/utils/sounds'
 
@@ -25,7 +26,10 @@ export default function DailyBonus() {
   const claim = () => {
     playSound('claim')
     const coins = grindStore.claimDailyBonus()
-    if (coins > 0) petStore.earn(coins)
+    if (coins > 0) {
+      petStore.earn(coins)
+      achievementsStore.unlock('first_daily')
+    }
   }
 
   return (

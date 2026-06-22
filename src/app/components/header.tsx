@@ -30,7 +30,7 @@ function Header() {
   return (
     <header className={colored ? 'header--colored' : ''}>
       <div className='logo--container'>
-        <Image src={logoPath} alt='Petana logo' width={30} height={30}/>
+        <Image className='petana-logo' src={logoPath} alt='Petana logo' width={30} height={30}/>
         <Link href='/'>Petana</Link>
         <VolumeBtn/>
         <InfoBtn/>

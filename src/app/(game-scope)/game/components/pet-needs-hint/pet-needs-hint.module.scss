@@ -1,0 +1,17 @@
+.hint {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 10px 14px;
+  border: 2px solid #c0392b;
+  border-radius: 12px;
+  background-color: rgba(255, 240, 235, 0.95);
+  font-size: 14px;
+  max-width: 320px;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.01); }
+}

@@ -1,0 +1,44 @@
+$border-color: #4565e8;
+
+.bar {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 10px 14px;
+  border: 2px solid $border-color;
+  border-radius: 12px;
+  background-color: rgba(255, 255, 255, 0.9);
+  width: 100%;
+  max-width: 320px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+}
+
+.label {
+  font-weight: 600;
+}
+
+.count {
+  opacity: 0.85;
+}
+
+.track {
+  width: 100%;
+  height: 10px;
+  border: 1px solid $border-color;
+  border-radius: 999px;
+  overflow: hidden;
+  background-color: #fff;
+}
+
+.fill {
+  height: 100%;
+  background: linear-gradient(90deg, #4565e8, #7daffa);
+  border-radius: 999px;
+  transition: width 0.4s ease;
+}
