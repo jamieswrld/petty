@@ -14,6 +14,10 @@ create table if not exists chat_presence (
   last_seen timestamptz not null default now()
 );
 
+-- Optional maintenance: delete stale presence rows older than 2 minutes
+-- select cron.schedule('purge-stale-presence', '* * * * *',
+--   $$ delete from chat_presence where last_seen < now() - interval '2 minutes' $$);
+
 -- 2. Row level security
 alter table chat_messages enable row level security;
 alter table chat_presence enable row level security;

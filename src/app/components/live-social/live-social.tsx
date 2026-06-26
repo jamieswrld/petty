@@ -112,7 +112,7 @@ export default function LiveSocial() {
     if (chatMode === 'supabase') {
       const refresh = async () => {
         const count = await fetchSupabasePresenceCount()
-        if (count != null && count > 0) setOnlineCount(Math.max(count, 9))
+        if (count != null) setOnlineCount(count)
         else setOnlineCount(displayOnlineCount())
       }
       void refresh()

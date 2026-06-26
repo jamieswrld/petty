@@ -17,6 +17,8 @@ type ChatRow = {
 // Tables are created via supabase/live-chat.sql; keep client untyped for static export builds.
 type LiveChatClient = SupabaseClient
 
+const PRESENCE_TTL_MS = 90_000
+
 let client: LiveChatClient | null = null
 
 const getClient = () => {
@@ -110,9 +112,11 @@ export async function fetchSupabasePresenceCount(): Promise<number | null> {
   const supabase = getClient()
   if (!supabase) return null
 
+  const since = new Date(Date.now() - PRESENCE_TTL_MS).toISOString()
   const { count, error } = await supabase
     .from('chat_presence')
     .select('*', { count: 'exact', head: true })
+    .gte('last_seen', since)
 
   if (error) return null
   return count ?? 0
