@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 
-const SESSION_KEY = 'petana-live-session'
+const SESSION_KEY = 'petgotchi-live-session'
 
 const createSessionId = () => {
   if (typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function') {

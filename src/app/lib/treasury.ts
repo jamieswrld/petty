@@ -20,8 +20,10 @@ export const getRpcUrl = () =>
 
 export const getConnection = () => new Connection(getRpcUrl(), 'confirmed')
 
-export const getPetanaMint = (): PublicKey | null => {
-  const mint = process.env.NEXT_PUBLIC_PETANA_MINT?.trim()
+export const getPetgotchiMint = (): PublicKey | null => {
+  const mint =
+    process.env.NEXT_PUBLIC_PETGOTCHI_MINT?.trim() ||
+    process.env.NEXT_PUBLIC_PETANA_MINT?.trim()
   if (!mint) return null
   try {
     return new PublicKey(mint)
@@ -31,7 +33,11 @@ export const getPetanaMint = (): PublicKey | null => {
 }
 
 export const getTokenDecimals = () => {
-  const n = Number(process.env.PETANA_TOKEN_DECIMALS ?? 9)
+  const n = Number(
+    process.env.PETGOTCHI_TOKEN_DECIMALS ??
+      process.env.PETANA_TOKEN_DECIMALS ??
+      9,
+  )
   return Number.isFinite(n) ? n : 9
 }
 
@@ -62,14 +68,14 @@ export type TreasuryStatus = {
   configured: boolean
   address: string
   solBalance: number
-  petanaMint: string | null
-  petanaBalance: number | null
+  petgotchiMint: string | null
+  petgotchiBalance: number | null
   rpc: string
 }
 
 export const getTreasuryStatus = async (): Promise<TreasuryStatus> => {
   const connection = getConnection()
-  const mint = getPetanaMint()
+  const mint = getPetgotchiMint()
   const configured = isTreasuryConfigured()
 
   let address: string
@@ -84,8 +90,8 @@ export const getTreasuryStatus = async (): Promise<TreasuryStatus> => {
       configured: false,
       address: '',
       solBalance: 0,
-      petanaMint: mint?.toBase58() ?? null,
-      petanaBalance: null,
+      petgotchiMint: mint?.toBase58() ?? null,
+      petgotchiBalance: null,
       rpc: getRpcUrl(),
     }
   }
@@ -93,19 +99,19 @@ export const getTreasuryStatus = async (): Promise<TreasuryStatus> => {
   const pubkey = new PublicKey(address)
   const lamports = await connection.getBalance(pubkey)
 
-  let petanaBalance: number | null = null
+  let petgotchiBalance: number | null = null
   if (mint) {
     try {
       const accounts = await connection.getTokenAccountsByOwner(pubkey, { mint })
       if (accounts.value.length > 0) {
         const account = await getAccount(connection, accounts.value[0].pubkey)
         const mintInfo = await getMint(connection, mint)
-        petanaBalance = Number(account.amount) / 10 ** mintInfo.decimals
+        petgotchiBalance = Number(account.amount) / 10 ** mintInfo.decimals
       } else {
-        petanaBalance = 0
+        petgotchiBalance = 0
       }
     } catch {
-      petanaBalance = null
+      petgotchiBalance = null
     }
   }
 
@@ -113,8 +119,8 @@ export const getTreasuryStatus = async (): Promise<TreasuryStatus> => {
     configured,
     address,
     solBalance: lamports / LAMPORTS_PER_SOL,
-    petanaMint: mint?.toBase58() ?? null,
-    petanaBalance,
+    petgotchiMint: mint?.toBase58() ?? null,
+    petgotchiBalance,
     rpc: getRpcUrl(),
   }
 }

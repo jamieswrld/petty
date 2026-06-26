@@ -1,10 +1,10 @@
 export type Milestone = {
   threshold: number // lifetime coins earned needed to unlock
   reward: string // human label for the tier
-  tokenPayout?: number // $Petana claimable once tier is reached
+  tokenPayout?: number // $Petgotchi claimable once tier is reached
 }
 
-// Lifetime-earned thresholds. Each tier unlocks a separate $Petana claim.
+// Lifetime-earned thresholds. Each tier unlocks a separate $Petgotchi claim.
 // Payouts are handled manually by the team using the recorded claim.
 export const milestones: Milestone[] = [
   { threshold: 2_500, reward: 'Sprout', tokenPayout: 500 },
@@ -16,13 +16,6 @@ export const milestones: Milestone[] = [
 
 export const levelForEarned = ( totalEarned: number ): number =>
   milestones.filter(( m ) => totalEarned >= m.threshold).length + 1
-
-/** Highest milestone tier reached, or Rookie before the first threshold. */
-export const rankForEarned = ( totalEarned: number ): string => {
-  const unlocked = milestones.filter(( m ) => totalEarned >= m.threshold)
-  if (unlocked.length === 0) return 'Rookie'
-  return unlocked[unlocked.length - 1].reward
-}
 
 export const nextMilestone = ( totalEarned: number ): Milestone | undefined =>
   milestones.find(( m ) => totalEarned < m.threshold)

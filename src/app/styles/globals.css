@@ -1,3 +1,4 @@
+@charset "UTF-8";
 * {
   box-sizing: border-box;
   padding: 0;
@@ -5,7 +6,7 @@
 }
 
 html {
-  background-color: #7daffa;
+  background-color: #c4b5fd;
   overflow-x: clip;
   scroll-padding-top: 72px;
 }
@@ -19,8 +20,8 @@ body {
   justify-content: flex-start;
   align-items: stretch;
   min-height: 100vh;
-  background-color: #f4bda3;
-  border: solid 2px #4565e8;
+  background-color: #ffe8d6;
+  border: solid 2px #7c3aed;
   border-radius: 50px;
   overflow-x: clip;
 }
@@ -48,7 +49,7 @@ header {
   align-items: center;
   gap: 10px 16px;
   padding: 14px 16px;
-  border-bottom: 1px solid #4565e8;
+  border-bottom: 1px solid #7c3aed;
   width: 100%;
   max-width: 960px;
   font-size: 18px;
@@ -58,9 +59,9 @@ header {
 }
 header.header--colored {
   padding: 14px 16px;
-  background-color: #f4bda3;
-  border-left: 2px solid #4565e8;
-  border-right: 2px solid #4565e8;
+  background-color: #ffe8d6;
+  border-left: 2px solid #7c3aed;
+  border-right: 2px solid #7c3aed;
 }
 
 .logo--container {
@@ -70,8 +71,21 @@ header.header--colored {
   gap: 10px;
 }
 
-.petana-logo {
+.brand--cluster {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Pixel logo — show as-is; avoid mix-blend which hides art on light backgrounds */
+.petgotchi-logo {
   image-rendering: pixelated;
+}
+
+.brand-link {
+  font-weight: 700;
+  color: #7c3aed;
+  letter-spacing: 0.02em;
 }
 
 .hero-logo {
@@ -129,24 +143,23 @@ header.header--colored {
 }
 
 .profile--wallet {
-  font-size: 12px;
+  font-size: 13px;
   padding: 2px 8px;
-  border: 1px solid #4565e8;
+  border: 1px solid #7c3aed;
   border-radius: 999px;
 }
 
 .profile--logout {
   font-family: inherit;
-  font-size: 12px;
+  font-size: 13px;
   background: none;
-  border: 1px solid #4565e8;
+  border: 1px solid #7c3aed;
   border-radius: 8px;
   padding: 2px 8px;
   cursor: pointer;
 }
-
 .profile--logout:hover {
-  background-color: #4565e8;
+  background-color: #7c3aed;
   color: #fff;
 }
 
@@ -188,8 +201,6 @@ footer {
 .loading--container {
   display: flex;
   flex-direction: row;
-  align-items: end;
+  align-items: flex-end;
   gap: 4px;
 }
-
-/*# sourceMappingURL=globals.css.map */

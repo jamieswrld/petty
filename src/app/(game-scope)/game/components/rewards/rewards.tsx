@@ -138,7 +138,7 @@ export default function Rewards() {
       </div>
 
       {testMode && (
-        <p className={styles['test--banner']}>Test mode: claims pay 1 $Petana each</p>
+        <p className={styles['test--banner']}>Test mode: claims pay 1 $Petgotchi each</p>
       )}
 
       {treasuryLive === false && (
@@ -167,7 +167,7 @@ export default function Rewards() {
           playSound('click')
           setVisible(true)
         }}>
-          Connect wallet to claim $Petana
+          Connect wallet to claim $Petgotchi
         </button>
       )}
 
@@ -186,7 +186,7 @@ export default function Rewards() {
                 </span>
                 {hasToken && (
                   <span className={styles['milestone--token']}>
-                    {formatThreshold(m.tokenPayout!)} $Petana
+                    {formatThreshold(m.tokenPayout!)} $Petgotchi
                   </span>
                 )}
               </span>

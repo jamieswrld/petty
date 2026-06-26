@@ -21,11 +21,11 @@ type LiveHub = {
 }
 
 const getHub = (): LiveHub => {
-  const g = globalThis as typeof globalThis & { __petanaLiveHub?: LiveHub }
-  if (!g.__petanaLiveHub) {
-    g.__petanaLiveHub = { online: new Map(), messages: [] }
+  const g = globalThis as typeof globalThis & { __petgotchiLiveHub?: LiveHub }
+  if (!g.__petgotchiLiveHub) {
+    g.__petgotchiLiveHub = { online: new Map(), messages: [] }
   }
-  return g.__petanaLiveHub
+  return g.__petgotchiLiveHub
 }
 
 const prunePresence = ( hub: LiveHub ) => {

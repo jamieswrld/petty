@@ -85,7 +85,7 @@ export function subscribeSupabaseMessages(
   let channel: RealtimeChannel | null = null
 
   channel = supabase
-    .channel('petana-live-chat')
+    .channel('petgotchi-live-chat')
     .on(
       'postgres_changes',
       { event: 'INSERT', schema: 'public', table: 'chat_messages' },

@@ -12,9 +12,9 @@ type Registry = Map<string, ClaimRecord>
 const claimKey = ( wallet: string, threshold: number ) => `${wallet}:${threshold}`
 
 const getRegistry = (): Registry => {
-  const g = globalThis as typeof globalThis & { __petanaClaimRegistry?: Registry }
-  if (!g.__petanaClaimRegistry) g.__petanaClaimRegistry = new Map()
-  return g.__petanaClaimRegistry
+  const g = globalThis as typeof globalThis & { __petgotchiClaimRegistry?: Registry }
+  if (!g.__petgotchiClaimRegistry) g.__petgotchiClaimRegistry = new Map()
+  return g.__petgotchiClaimRegistry
 }
 
 export const claimRegistry = {

@@ -1,7 +1,7 @@
-$background-html-color: #7daffa;
-$background-body-color: #f4bda3;
+$background-html-color: #c4b5fd;
+$background-body-color: #ffe8d6;
 $border-radius: 8px;
-$border-color: #4565e8;
+$border-color: #7c3aed;
 $input-border: #8b8a8b;
 
 * {
@@ -77,9 +77,21 @@ header {
   gap: 10px;
 }
 
+.brand--cluster {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
 /* Pixel logo — show as-is; avoid mix-blend which hides art on light backgrounds */
-.petana-logo {
+.petgotchi-logo {
   image-rendering: pixelated;
+}
+
+.brand-link {
+  font-weight: 700;
+  color: $border-color;
+  letter-spacing: 0.02em;
 }
 
 .hero-logo {
@@ -204,6 +216,6 @@ footer {
 .loading--container {
   display: flex;
   flex-direction: row;
-  align-items: end;
+  align-items: flex-end;
   gap: 4px;
 }

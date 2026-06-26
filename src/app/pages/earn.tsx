@@ -12,10 +12,10 @@ export default function Earn() {
   return (
     <div className={styles['earn--container']}>
       <div className={styles['earn--intro']}>
-        <Image className='petana-logo' src={logoPath} alt='Petana logo' width={120} height={120}/>
+        <Image className='petgotchi-logo' src={logoPath} alt='Petgotchi logo' width={120} height={120}/>
         <h1>How to Earn</h1>
         <p>
-          Petana is built for grinders. Coins fuel your pet&apos;s care loop and stack toward
+          Petgotchi is built for grinders. Coins fuel your pet&apos;s care loop and stack toward
           milestone rewards. Here is every way to earn.
         </p>
       </div>
@@ -35,13 +35,13 @@ export default function Earn() {
 
       <section className={styles['milestones--section']}>
         <h2>Milestone tiers</h2>
-        <p>Lifetime coins earned unlock tiers. Sprout, Bronze, and Silver each pay 500 $Petana; Gold pays 1,500 and Diamond pays 3,000. Connect a Solana wallet in-game to claim.</p>
+        <p>Lifetime coins earned unlock tiers. Sprout, Bronze, and Silver each pay 500 $Petgotchi; Gold pays 1,500 and Diamond pays 3,000. Connect a Solana wallet in-game to claim.</p>
         <ul className={styles['tier--list']}>
           {milestones.map(( m ) => (
             <li key={m.threshold}>
               <strong>{m.reward}</strong> — {formatThreshold(m.threshold)} lifetime coins
               {m.tokenPayout != null && (
-                <span> · claim {formatThreshold(m.tokenPayout)} $Petana</span>
+                <span> · claim {formatThreshold(m.tokenPayout)} $Petgotchi</span>
               )}
             </li>
           ))}

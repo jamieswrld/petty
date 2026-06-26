@@ -9,7 +9,7 @@ import {
 } from '@component/app/shared-data/economy'
 import { isBrowser, persistToStorage } from '@component/app/utils/storage'
 
-export const GRIND_KEY = 'petana-grind'
+export const GRIND_KEY = 'petgotchi-grind'
 
 export type GrindState = {
   lastLoginDate: string | null

@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server'
 
 import { sendTokenPayout } from '@component/app/lib/treasury-payout'
-import { getPetanaMint, isTreasuryConfigured } from '@component/app/lib/treasury'
+import { getPetgotchiMint, isTreasuryConfigured } from '@component/app/lib/treasury'
 
 export const dynamic = 'force-dynamic'
 
@@ -21,8 +21,8 @@ export async function POST( request: Request ) {
     return NextResponse.json({ error: 'Treasury wallet is not configured' }, { status: 503 })
   }
 
-  if (!getPetanaMint()) {
-    return NextResponse.json({ error: 'NEXT_PUBLIC_PETANA_MINT is not set' }, { status: 503 })
+  if (!getPetgotchiMint()) {
+    return NextResponse.json({ error: 'NEXT_PUBLIC_PETGOTCHI_MINT is not set' }, { status: 503 })
   }
 
   try {

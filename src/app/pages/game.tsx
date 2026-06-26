@@ -17,7 +17,6 @@ import Rewards from '../(game-scope)/game/components/rewards/rewards'
 import MilestoneBar from '../(game-scope)/game/components/milestone-bar/milestone-bar'
 import PetNeedsHint from '../(game-scope)/game/components/pet-needs-hint/pet-needs-hint'
 import ContractAddress from '../components/contract-address'
-import SharePet from '../components/share-pet/share-pet'
 import AchievementToast from '../components/achievement-toast/achievement-toast'
 import { achievementsStore } from '../achievement-store'
 import { grindStore } from '../grind-store'
@@ -55,7 +54,7 @@ export default function Game() {
       <AchievementToast/>
       <div
         className={styles['game--container']}
-        style={{ background: 'linear-gradient(180deg, #7daffa 0%, #f4bda3 55%, #98D98E 100%)' }}
+        style={{ background: 'linear-gradient(180deg, #c4b5fd 0%, #ffe8d6 55%, #98D98E 100%)' }}
       >
         <Noti/>
         <div className={styles['game-hud']}>
@@ -100,7 +99,6 @@ export default function Game() {
               width={200}
               height={208}
             />
-            <SharePet pet={pet} username={player?.username}/>
           </div>
 
           <div className={styles['places--container']}>

@@ -12,7 +12,7 @@ export type Player = {
   createdAt: number
 }
 
-export const PLAYER_KEY = 'petana-player'
+export const PLAYER_KEY = 'petgotchi-player'
 
 const store = atom<Player | undefined>(undefined)
 

@@ -31,8 +31,10 @@ function Header() {
   return (
     <header className={colored ? 'header--colored' : ''}>
       <div className='logo--container'>
-        <Image className='petana-logo' src={logoPath} alt='Petana logo' width={30} height={30}/>
-        <Link href='/'>Petana</Link>
+      <div className='brand--cluster'>
+        <Image className='petgotchi-logo' src={logoPath} alt='Petgotchi logo' width={32} height={32}/>
+        <Link href='/' className='brand-link'>Petgotchi</Link>
+      </div>
         <VolumeBtn/>
         <InfoBtn/>
         <XBtn/>

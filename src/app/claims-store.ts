@@ -17,7 +17,7 @@ export type Claim = {
   error?: string
 }
 
-export const CLAIMS_KEY = 'petana-claims'
+export const CLAIMS_KEY = 'petgotchi-claims'
 
 const store = atom<Claim[]>([])
 

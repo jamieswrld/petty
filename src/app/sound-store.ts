@@ -3,7 +3,7 @@
 import { atom } from 'nanostores'
 import { isBrowser, persistToStorage } from '@component/app/utils/storage'
 
-export const VOLUME_KEY = 'petana-volume'
+export const VOLUME_KEY = 'petgotchi-volume'
 
 // localStorage 'true' = muted (matches legacy volume-btn behaviour)
 export const soundStore = atom({ muted: false })

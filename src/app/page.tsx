@@ -86,14 +86,16 @@ export default function Login() {
       <div className={styles['login--hero']}>
         <AnimatedHeartBeating
           image={logoPath}
-          alt='Petana logo'
+          alt='Petgotchi logo'
           style='hero-logo'
           width={168}
           height={168}
         />
-        <h1 className={styles.title}>Welcome to Petana</h1>
+        <h1 className={styles.title}>
+          Welcome to <span className={styles.brand}>Petgotchi</span>
+        </h1>
         <p className={styles.subtitle}>
-          Adopt a pixel pet, grind daily streaks, and earn coins as you care for your companion.
+          Raise a pixel pet, stack daily streaks, and earn coins while you care for your companion.
         </p>
       </div>
 
@@ -101,7 +103,7 @@ export default function Login() {
         <div className={styles['profile-blocked']}>
           <p className={styles['profile-blocked--title']}>One profile per connection</p>
           <p className={styles['profile-blocked--text']}>
-            {eligibility.reason ?? 'Only one Petana profile is allowed from your network.'}
+            {eligibility.reason ?? 'Only one Petgotchi profile is allowed from your network.'}
             {eligibility.existingUsername && (
               <> Your profile is <strong>{eligibility.existingUsername}</strong>.</>
             )}

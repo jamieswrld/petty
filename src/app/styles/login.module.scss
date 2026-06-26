@@ -1,5 +1,5 @@
-$border-color: #4565e8;
-$body-color: #f4bda3;
+$border-color: #7c3aed;
+$body-color: #ffe8d6;
 
 .login--container {
   display: flex;
@@ -30,8 +30,15 @@ $body-color: #f4bda3;
 }
 
 .title {
-  font-size: 44px;
-  line-height: 1.1;
+  font-size: 40px;
+  line-height: 1.15;
+}
+
+.brand {
+  display: block;
+  font-size: 52px;
+  color: $border-color;
+  text-shadow: 3px 3px 0 rgba(124, 58, 237, 0.2);
 }
 
 .subtitle {

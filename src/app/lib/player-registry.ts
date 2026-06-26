@@ -17,11 +17,11 @@ type Registry = {
 }
 
 const getRegistry = (): Registry => {
-  const g = globalThis as typeof globalThis & { __petanaPlayerRegistry?: Registry }
-  if (!g.__petanaPlayerRegistry) {
-    g.__petanaPlayerRegistry = { byIp: new Map(), byWallet: new Map() }
+  const g = globalThis as typeof globalThis & { __petgotchiPlayerRegistry?: Registry }
+  if (!g.__petgotchiPlayerRegistry) {
+    g.__petgotchiPlayerRegistry = { byIp: new Map(), byWallet: new Map() }
   }
-  return g.__petanaPlayerRegistry
+  return g.__petgotchiPlayerRegistry
 }
 
 export const playerRegistry = {
@@ -36,7 +36,7 @@ export const playerRegistry = {
       return {
         allowed: false,
         existingUsername: existing.username,
-        reason: 'Only one Petana profile is allowed per connection.',
+        reason: 'Only one Petgotchi profile is allowed per connection.',
       }
     }
 
@@ -67,7 +67,7 @@ export const playerRegistry = {
         return {
           allowed: false,
           existingUsername: existing.username,
-          reason: 'Only one Petana profile is allowed per connection.',
+          reason: 'Only one Petgotchi profile is allowed per connection.',
         }
       }
       return { allowed: true }

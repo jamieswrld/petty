@@ -48,12 +48,12 @@ export const earnMethods: EarnMethod[] = [
   },
   {
     id: 'milestones',
-    title: '$Petana milestone claims',
-    coins: '500–3,000 $Petana',
+    title: '$Petgotchi milestone claims',
+    coins: '500–3,000 $Petgotchi',
     description:
-      'Hit lifetime coin milestones, connect a wallet, and claim $Petana on-chain when the treasury is live. Test mode pays 1 token per claim for dry runs.',
+      'Hit lifetime coin milestones, connect a wallet, and claim $Petgotchi on-chain when the treasury is live. Test mode pays 1 token per claim for dry runs.',
     tip: `Progression: ${milestones.map(( m ) => {
-      const token = m.tokenPayout ? ` → ${formatThreshold(m.tokenPayout)} $Petana` : ''
+      const token = m.tokenPayout ? ` → ${formatThreshold(m.tokenPayout)} $Petgotchi` : ''
       return `${m.reward} (${formatThreshold(m.threshold)} coins${token})`
     }).join(' · ')}.`,
   },

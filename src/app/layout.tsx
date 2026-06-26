@@ -15,7 +15,7 @@ const pixelify = Pixelify_Sans({ weight: ['400', '600'], subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: metaTitle,
-  description: 'Pixel Tamagotchi for grinders. Adopt a pet, earn coins, claim milestone rewards.',
+  description: 'Petgotchi — pixel Tamagotchi for grinders. Adopt a pet, earn coins, claim milestone rewards.',
 }
 
 export default function RootLayout( {

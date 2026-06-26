@@ -1,8 +1,8 @@
-# ![Logo](/public/game-asset/heart.svg) Petana
+# ![Logo](/public/game-asset/heart.svg) Petgotchi
 
 ## 💥 Introduction
 
-Welcome to Petana - your pixelated Tamagotchi game.
+Welcome to Petgotchi — your pixelated Tamagotchi game.
 
 Choose your pet's skin, name it, and plunge into a world of care. Your role? Keep your friend hydrated, well-fed, and
 super loved. But remember, caring also involves spending your coins wisely!

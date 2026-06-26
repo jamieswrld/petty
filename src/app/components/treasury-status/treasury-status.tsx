@@ -8,8 +8,8 @@ type TreasuryStatus = {
   configured: boolean
   address: string
   solBalance: number
-  petanaMint: string | null
-  petanaBalance: number | null
+  petgotchiMint: string | null
+  petgotchiBalance: number | null
   rpc: string
 }
 
@@ -54,8 +54,8 @@ export default function TreasuryStatus() {
       </p>
       <div className={styles.balances}>
         <span>{status.solBalance.toFixed(4)} SOL</span>
-        {status.petanaMint && status.petanaBalance != null && (
-          <span>{status.petanaBalance.toLocaleString()} $Petana</span>
+        {status.petgotchiMint && status.petgotchiBalance != null && (
+          <span>{status.petgotchiBalance.toLocaleString()} $Petgotchi</span>
         )}
       </div>
     </div>

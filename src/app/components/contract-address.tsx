@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react'
 
-import { petanaMintAddress } from '@component/app/shared-data/shared-data'
+import { petgotchiMintAddress } from '@component/app/shared-data/shared-data'
 import { playSound } from '@component/app/utils/sounds'
 
 import styles from './contract-address.module.scss'
@@ -16,7 +16,7 @@ export default function ContractAddress( { className }: Props ) {
 
   const copy = async () => {
     try {
-      await navigator.clipboard.writeText(petanaMintAddress)
+      await navigator.clipboard.writeText(petgotchiMintAddress)
       playSound('click')
       setCopied(true)
       setTimeout(() => setCopied(false), 2000)
@@ -25,12 +25,12 @@ export default function ContractAddress( { className }: Props ) {
     }
   }
 
-  const short = `${petanaMintAddress.slice(0, 4)}…${petanaMintAddress.slice(-4)}`
+  const short = `${petgotchiMintAddress.slice(0, 4)}…${petgotchiMintAddress.slice(-4)}`
 
   return (
     <div className={`${styles.ca} ${className ?? ''}`}>
-      <span className={styles.label}>$Petana CA</span>
-      <button type='button' className={styles.address} onClick={copy} title={petanaMintAddress}>
+      <span className={styles.label}>$Petgotchi CA</span>
+      <button type='button' className={styles.address} onClick={copy} title={petgotchiMintAddress}>
         {short}
       </button>
       <span className={styles.feedback}>{copied ? 'Copied!' : 'Click to copy'}</span>

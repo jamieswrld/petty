@@ -81,14 +81,14 @@ export default function CreateWorld() {
       <div className={styles['profile-blocked']}>
         <AnimatedHeartBeating
           image={logoPath}
-          alt='Petana logo'
+          alt='Petgotchi logo'
           style='hero-logo'
           width={140}
           height={140}
         />
         <h2>One profile per connection</h2>
         <p>
-          {eligibility.reason ?? 'Only one Petana profile is allowed from your network.'}
+          {eligibility.reason ?? 'Only one Petgotchi profile is allowed from your network.'}
           {eligibility.existingUsername && (
             <> Your profile is <strong>{eligibility.existingUsername}</strong>.</>
           )}
@@ -141,14 +141,14 @@ export default function CreateWorld() {
     >
       <AnimatedHeartBeating
         image={logoPath}
-        alt='Petana logo'
+        alt='Petgotchi logo'
         style='hero-logo'
         width={140}
         height={140}
       />
 
       <div className={styles['naming--container']}>
-        <h2>Name your Petana world</h2>
+        <h2>Name your Petgotchi world</h2>
         <input
           type='text'
           placeholder='Choose a username'

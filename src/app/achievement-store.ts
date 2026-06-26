@@ -38,7 +38,7 @@ export const ACHIEVEMENTS: Record<AchievementId, Achievement> = {
   },
 }
 
-export const ACHIEVEMENTS_KEY = 'petana-achievements'
+export const ACHIEVEMENTS_KEY = 'petgotchi-achievements'
 
 const unlockedStore = atom<AchievementId[]>([])
 const toastStore = atom<Achievement | null>(null)
