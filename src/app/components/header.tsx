@@ -10,6 +10,7 @@ import InfoBtn from '@component/app/components/info-btn'
 import XBtn from '@component/app/components/x-btn'
 import Balance from '@component/app/components/balance'
 import Profile from '@component/app/components/profile'
+import ContractAddress from '@component/app/components/contract-address'
 
 function Header() {
   const [colored, setColored] = useState(false)
@@ -31,10 +32,11 @@ function Header() {
   return (
     <header className={colored ? 'header--colored' : ''}>
       <div className='logo--container'>
-      <div className='brand--cluster'>
-        <Image className='petgotchi-logo' src={logoPath} alt={`${siteName} logo`} width={32} height={32}/>
-        <Link href='/' className='brand-link'>{siteName}</Link>
-      </div>
+        <div className='brand--cluster'>
+          <Image className='petgotchi-logo' src={logoPath} alt={`${siteName} logo`} width={32} height={32}/>
+          <Link href='/' className='brand-link'>{siteName}</Link>
+        </div>
+        <ContractAddress variant='inline' className='header--ca'/>
         <VolumeBtn/>
         <InfoBtn/>
         <XBtn/>

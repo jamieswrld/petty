@@ -77,6 +77,10 @@ header.header--colored {
   gap: 8px;
 }
 
+.header--ca {
+  flex-shrink: 0;
+}
+
 /* Pixel logo — show as-is; avoid mix-blend which hides art on light backgrounds */
 .petgotchi-logo {
   image-rendering: pixelated;
