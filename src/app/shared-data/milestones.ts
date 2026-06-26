@@ -1,10 +1,10 @@
 export type Milestone = {
   threshold: number // lifetime coins earned needed to unlock
   reward: string // human label for the tier
-  tokenPayout?: number // $Petgotchi claimable once tier is reached
+  tokenPayout?: number // $Gotchi claimable once tier is reached
 }
 
-// Lifetime-earned thresholds. Each tier unlocks a separate $Petgotchi claim.
+// Lifetime-earned thresholds. Each tier unlocks a separate $Gotchi claim.
 // Payouts are handled manually by the team using the recorded claim.
 export const milestones: Milestone[] = [
   { threshold: 2_500, reward: 'Sprout', tokenPayout: 500 },

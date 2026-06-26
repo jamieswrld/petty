@@ -12,7 +12,7 @@ import useProfileEligibility from './hooks/useProfileEligibility'
 import AnimatedHeartBeating from './components/animations/animated-heart-beating'
 import { playSound } from './utils/sounds'
 
-import { logoPath } from './shared-data/shared-data'
+import { logoPath, siteName } from './shared-data/shared-data'
 import ContractAddress from './components/contract-address'
 
 import styles from './styles/login.module.scss'
@@ -86,13 +86,13 @@ export default function Login() {
       <div className={styles['login--hero']}>
         <AnimatedHeartBeating
           image={logoPath}
-          alt='Petgotchi logo'
+          alt={`${siteName} logo`}
           style='hero-logo'
           width={168}
           height={168}
         />
         <h1 className={styles.title}>
-          Welcome to <span className={styles.brand}>Petgotchi</span>
+          Welcome to <span className={styles.brand}>{siteName}</span>
         </h1>
         <p className={styles.subtitle}>
           Raise a pixel pet, stack daily streaks, and earn coins while you care for your companion.
@@ -103,7 +103,7 @@ export default function Login() {
         <div className={styles['profile-blocked']}>
           <p className={styles['profile-blocked--title']}>One profile per connection</p>
           <p className={styles['profile-blocked--text']}>
-            {eligibility.reason ?? 'Only one Petgotchi profile is allowed from your network.'}
+            {eligibility.reason ?? 'Only one petgotchi profile is allowed from your network.'}
             {eligibility.existingUsername && (
               <> Your profile is <strong>{eligibility.existingUsername}</strong>.</>
             )}

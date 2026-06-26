@@ -4,7 +4,7 @@ import React, { memo, useEffect, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 
-import { logoPath } from '@component/app/shared-data/shared-data'
+import { logoPath, siteName } from '@component/app/shared-data/shared-data'
 import VolumeBtn from '@component/app/components/volume-btn'
 import InfoBtn from '@component/app/components/info-btn'
 import XBtn from '@component/app/components/x-btn'
@@ -32,8 +32,8 @@ function Header() {
     <header className={colored ? 'header--colored' : ''}>
       <div className='logo--container'>
       <div className='brand--cluster'>
-        <Image className='petgotchi-logo' src={logoPath} alt='Petgotchi logo' width={32} height={32}/>
-        <Link href='/' className='brand-link'>Petgotchi</Link>
+        <Image className='petgotchi-logo' src={logoPath} alt={`${siteName} logo`} width={32} height={32}/>
+        <Link href='/' className='brand-link'>{siteName}</Link>
       </div>
         <VolumeBtn/>
         <InfoBtn/>

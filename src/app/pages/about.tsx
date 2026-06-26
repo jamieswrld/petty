@@ -3,23 +3,23 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 import styles from '@component/app/about/about.module.scss'
-import { logoPath } from '@component/app/shared-data/shared-data'
+import { logoPath, siteName } from '@component/app/shared-data/shared-data'
 
 export default function About() {
   return (
     <div className={styles['about--container']}>
       <div className={styles['about--hero']}>
-        <Image className='petgotchi-logo' src={logoPath} alt='Petgotchi logo' width={120} height={120}/>
+        <Image className='petgotchi-logo' src={logoPath} alt={`${siteName} logo`} width={120} height={120}/>
         <p className={styles.heading}>We are memecoin traders who wanted a Tamagotchi.</p>
       </div>
 
       <div className={styles['about--text']}>
         <p>
-          Petgotchi started on a degen group chat. We were up late watching charts, swapping bags,
+          petgotchi started on a degen group chat. We were up late watching charts, swapping bags,
           and someone said: &ldquo;What if we had a Tamagotchi that actually rewarded the grind?&rdquo;
         </p>
         <p>
-          So we shipped it. Petgotchi is a pixel pet you raise, care for, and earn coins with —
+          So we shipped it. petgotchi is a pixel pet you raise, care for, and earn coins with —
           the same loop we already live as traders, just cuter and with fewer liquidation emails.
         </p>
         <p>
@@ -28,7 +28,7 @@ export default function About() {
         </p>
         <p>
           No VC deck. No roadmap PDF. Just a bunch of memecoin traders who wanted something
-          wholesome to grind between candles. Welcome to <span style={{ fontWeight: 'bolder' }}>Petgotchi</span>.
+          wholesome to grind between candles. Welcome to <span style={{ fontWeight: 'bolder' }}>petgotchi</span>.
         </p>
       </div>
 

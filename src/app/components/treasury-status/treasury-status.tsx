@@ -2,14 +2,16 @@
 
 import React, { useEffect, useState } from 'react'
 
+import { tokenSymbol } from '@component/app/shared-data/shared-data'
+
 import styles from './treasury-status.module.scss'
 
 type TreasuryStatus = {
   configured: boolean
   address: string
   solBalance: number
-  petgotchiMint: string | null
-  petgotchiBalance: number | null
+  gotchiMint: string | null
+  gotchiBalance: number | null
   rpc: string
 }
 
@@ -54,8 +56,8 @@ export default function TreasuryStatus() {
       </p>
       <div className={styles.balances}>
         <span>{status.solBalance.toFixed(4)} SOL</span>
-        {status.petgotchiMint && status.petgotchiBalance != null && (
-          <span>{status.petgotchiBalance.toLocaleString()} $Petgotchi</span>
+        {status.gotchiMint && status.gotchiBalance != null && (
+          <span>{status.gotchiBalance.toLocaleString()} {tokenSymbol}</span>
         )}
       </div>
     </div>

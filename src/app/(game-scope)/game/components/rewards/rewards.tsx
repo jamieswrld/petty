@@ -9,6 +9,7 @@ import { petStore } from '@component/app/pet-store'
 import { playerStore } from '@component/app/player-store'
 import { claimsStore } from '@component/app/claims-store'
 import { milestones, levelForEarned, nextMilestone, formatThreshold } from '@component/app/shared-data/milestones'
+import { tokenSymbol } from '@component/app/shared-data/shared-data'
 import { playSound } from '@component/app/utils/sounds'
 import { claimApiUrl } from '@component/app/utils/claim-api'
 
@@ -138,7 +139,7 @@ export default function Rewards() {
       </div>
 
       {testMode && (
-        <p className={styles['test--banner']}>Test mode: claims pay 1 $Petgotchi each</p>
+        <p className={styles['test--banner']}>Test mode: claims pay 1 {tokenSymbol} each</p>
       )}
 
       {treasuryLive === false && (
@@ -167,7 +168,7 @@ export default function Rewards() {
           playSound('click')
           setVisible(true)
         }}>
-          Connect wallet to claim $Petgotchi
+          Connect wallet to claim {tokenSymbol}
         </button>
       )}
 
@@ -186,7 +187,7 @@ export default function Rewards() {
                 </span>
                 {hasToken && (
                   <span className={styles['milestone--token']}>
-                    {formatThreshold(m.tokenPayout!)} $Petgotchi
+                    {formatThreshold(m.tokenPayout!)} {tokenSymbol}
                   </span>
                 )}
               </span>

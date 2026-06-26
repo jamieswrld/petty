@@ -1,4 +1,5 @@
 import { milestones, formatThreshold } from './milestones'
+import { tokenSymbol } from './shared-data'
 
 export type EarnMethod = {
   id: string
@@ -48,12 +49,12 @@ export const earnMethods: EarnMethod[] = [
   },
   {
     id: 'milestones',
-    title: '$Petgotchi milestone claims',
-    coins: '500–3,000 $Petgotchi',
+    title: `${tokenSymbol} milestone claims`,
+    coins: `500–3,000 ${tokenSymbol}`,
     description:
-      'Hit lifetime coin milestones, connect a wallet, and claim $Petgotchi on-chain when the treasury is live. Test mode pays 1 token per claim for dry runs.',
+      `Hit lifetime coin milestones, connect a wallet, and claim ${tokenSymbol} on-chain when the treasury is live. Test mode pays 1 token per claim for dry runs.`,
     tip: `Progression: ${milestones.map(( m ) => {
-      const token = m.tokenPayout ? ` → ${formatThreshold(m.tokenPayout)} $Petgotchi` : ''
+      const token = m.tokenPayout ? ` → ${formatThreshold(m.tokenPayout)} ${tokenSymbol}` : ''
       return `${m.reward} (${formatThreshold(m.threshold)} coins${token})`
     }).join(' · ')}.`,
   },

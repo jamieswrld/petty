@@ -2,7 +2,7 @@ import React from 'react'
 import type { Metadata } from 'next'
 import { Pixelify_Sans } from 'next/font/google'
 
-import { metaTitle, logoPath } from '@component/app/shared-data/shared-data'
+import { metaTitle, logoPath, siteName, siteUrl } from '@component/app/shared-data/shared-data'
 
 import './styles/globals.css'
 import Header from '@component/app/components/header'
@@ -14,8 +14,15 @@ import SolanaProvider from '@component/app/components/solana/wallet-provider'
 const pixelify = Pixelify_Sans({ weight: ['400', '600'], subsets: ['latin'] })
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: metaTitle,
-  description: 'Petgotchi — pixel Tamagotchi for grinders. Adopt a pet, earn coins, claim milestone rewards.',
+  description: `${siteName} — pixel Tamagotchi for grinders. Adopt a pet, earn coins, claim milestone rewards.`,
+  openGraph: {
+    title: metaTitle,
+    description: `${siteName} — pixel Tamagotchi for grinders.`,
+    url: siteUrl,
+    siteName,
+  },
 }
 
 export default function RootLayout( {

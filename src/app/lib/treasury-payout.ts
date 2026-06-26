@@ -11,7 +11,7 @@ import {
 } from '@solana/web3.js'
 import {
   getConnection,
-  getPetgotchiMint,
+  getGotchiMint,
   getTokenDecimals,
   loadTreasuryKeypair,
 } from '@component/app/lib/treasury'
@@ -20,7 +20,7 @@ export async function sendTokenPayout(
   recipient: string,
   amount: number,
 ): Promise<string> {
-  const mint = getPetgotchiMint()
+  const mint = getGotchiMint()
   if (!mint) throw new Error('Token mint is not configured')
 
   const recipientPk = new PublicKey(recipient)

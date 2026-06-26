@@ -12,7 +12,7 @@ import {
 } from '@solana/web3.js'
 import {
   getConnection,
-  getPetgotchiMint,
+  getGotchiMint,
   getTokenDecimals,
   isTreasuryConfigured,
   loadTreasuryKeypair,
@@ -36,9 +36,9 @@ export async function POST( request: Request ) {
     return NextResponse.json({ error: 'Treasury wallet is not configured' }, { status: 503 })
   }
 
-  const mint = getPetgotchiMint()
+  const mint = getGotchiMint()
   if (!mint) {
-    return NextResponse.json({ error: 'NEXT_PUBLIC_PETGOTCHI_MINT is not set' }, { status: 503 })
+    return NextResponse.json({ error: 'NEXT_PUBLIC_GOTCHI_MINT is not set' }, { status: 503 })
   }
 
   try {

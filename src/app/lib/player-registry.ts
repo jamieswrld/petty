@@ -36,7 +36,7 @@ export const playerRegistry = {
       return {
         allowed: false,
         existingUsername: existing.username,
-        reason: 'Only one Petgotchi profile is allowed per connection.',
+        reason: 'Only one petgotchi profile is allowed per connection.',
       }
     }
 
@@ -67,7 +67,7 @@ export const playerRegistry = {
         return {
           allowed: false,
           existingUsername: existing.username,
-          reason: 'Only one Petgotchi profile is allowed per connection.',
+          reason: 'Only one petgotchi profile is allowed per connection.',
         }
       }
       return { allowed: true }

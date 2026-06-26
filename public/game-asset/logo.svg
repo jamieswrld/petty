@@ -1,5 +1,5 @@
 <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <!-- Petgotchi: pixel P + heart, transparent background -->
+  <!-- petgotchi: pixel P Tamagotchi, transparent background -->
   <g fill="#E8877E" stroke="#3D3530" stroke-width="2" stroke-linejoin="round">
     <!-- P stem -->
     <rect x="10" y="10" width="14" height="44" fill="#E8877E"/>

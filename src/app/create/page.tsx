@@ -9,7 +9,7 @@ import { Slide, slides } from '@component/app/shared-data/slides'
 import { Pet } from '@component/app/types/pet'
 import { petStore } from '@component/app/pet-store'
 import { STARTING_BALANCE } from '@component/app/shared-data/economy'
-import { logoPath } from '@component/app/shared-data/shared-data'
+import { logoPath, siteName } from '@component/app/shared-data/shared-data'
 import { playerStore } from '@component/app/player-store'
 import usePlayer from '@component/app/hooks/usePlayer'
 import usePet from '@component/app/hooks/usePet'
@@ -81,14 +81,14 @@ export default function CreateWorld() {
       <div className={styles['profile-blocked']}>
         <AnimatedHeartBeating
           image={logoPath}
-          alt='Petgotchi logo'
+          alt={`${siteName} logo`}
           style='hero-logo'
           width={140}
           height={140}
         />
         <h2>One profile per connection</h2>
         <p>
-          {eligibility.reason ?? 'Only one Petgotchi profile is allowed from your network.'}
+          {eligibility.reason ?? 'Only one petgotchi profile is allowed from your network.'}
           {eligibility.existingUsername && (
             <> Your profile is <strong>{eligibility.existingUsername}</strong>.</>
           )}
@@ -141,14 +141,14 @@ export default function CreateWorld() {
     >
       <AnimatedHeartBeating
         image={logoPath}
-        alt='Petgotchi logo'
+        alt={`${siteName} logo`}
         style='hero-logo'
         width={140}
         height={140}
       />
 
       <div className={styles['naming--container']}>
-        <h2>Name your Petgotchi world</h2>
+        <h2>Name your {siteName} world</h2>
         <input
           type='text'
           placeholder='Choose a username'

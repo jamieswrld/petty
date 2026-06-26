@@ -1,5 +1,5 @@
 # Deploy full Next.js app (with claim API) on Render: https://render.com
-# Point playpetgotchi.com here for on-chain claims + HTTPS
+# Point petgotchi.xyz here for on-chain claims + HTTPS
 services:
   - type: web
     name: petgotchi
@@ -14,13 +14,13 @@ services:
         value: "22"
       - key: NEXT_PUBLIC_SOLANA_RPC
         sync: false
-      - key: NEXT_PUBLIC_PETGOTCHI_MINT
+      - key: NEXT_PUBLIC_GOTCHI_MINT
         sync: false
       - key: NEXT_PUBLIC_TREASURY_WALLET
         sync: false
       - key: TREASURY_PRIVATE_KEY
         sync: false
-      - key: PETGOTCHI_TOKEN_DECIMALS
+      - key: GOTCHI_TOKEN_DECIMALS
         value: "6"
       - key: TREASURY_ADMIN_SECRET
         sync: false
